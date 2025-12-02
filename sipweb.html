@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SITE SEMED - SipWeb</title>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
+    
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="logo_semed.png" alt="Logo da Secretaria Municipal de Educação" class="logo">
+                <div class="logo-text">
+                    <h1>SECRETARIA MUNICIPAL DE EDUCAÇÃO</h1>
+                    <p>Sítio Novo - MA</p>
+                </div>
+            </div>
+            
+            <div class="hamburger-icon" id="hamburger">
+                <div></div> <div></div> <div></div>
+            </div>
+        </div>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html" class="nav-item home-link"><i class="fas fa-home"></i> Home</a> 
+            
+            <div class="dropdown" id="secretaria-dropdown">
+                <i class="fas fa-university"></i> A Secretaria
+                <ul class="submenu">
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Documentos</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Funcionários</a></li>
+                    <li><a href="sobre.html"><i class="fas fa-info-circle"></i> Sobre</a></li>
+                </ul>
+            </div>
+            
+            <a href="noticias.html" class="nav-item"><i class="fas fa-bullhorn"></i> Notícias</a>
+            <a href="eventos.html" class="nav-item"><i class="fas fa-calendar-alt"></i> Eventos</a>
+            <a href="indicadores.html" class="nav-item"><i class="fas fa-chart-line"></i> Indicadores</a>
+            <a href="programas.html" class="nav-item"><i class="fas fa-rocket"></i> Programas</a>
+            <a href="sipweb.html" class="nav-item active"><i class="fas fa-laptop-code"></i> SipWeb</a>
+            <a href="contato.html" class="nav-item"><i class="fas fa-envelope"></i> Contato</a> 
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <section class="sipweb-section">
+            <h2 class="section-title">SIPWEB: Portal do Servidor</h2>
+            <p class="subtitle">Seu acesso online às informações funcionais e financeiras.</p>
+
+            <div class="sipweb-content-container">
+                <div class="sipweb-info">
+                    <img src="http://macontreina2.dcfiorilli.com.br:8082/sipweb/javax.faces.resource/img/logo.png.xhtml" alt="Logo do Sistema SipWeb" class="sipweb-logo">
+                    
+                    <p class="description">O SipWeb é um sistema online desenvolvido para facilitar a vida do funcionário público municipal. Através dele, você acessa de forma rápida e segura seus holerites(contracheques), ficha financeira, informe de rendimentos para Imposto de Renda, além de consultar informações contratuais e dados pessoais a qualquer momento.</p>
+                </div>
+                
+                <div class="sipweb-actions">
+                    <a href="http://macontreina2.dcfiorilli.com.br:8082/sipweb/trabalhador/login/login.xhtml" target="_blank" class="main-button access-button">
+                        <i class="fas fa-sign-in-alt"></i> ACESSAR O SISTEMA
+                    </a>
+                    
+                    <button class="secondary-button create-access-button" onclick="showAccessInstructions()">
+                        <i class="fas fa-user-plus"></i> CRIAR MEU ACESSO
+                    </button>
+                    
+                    <div id="access-instructions" class="instructions-box hidden">
+                        <h4>Instruções para Primeiro Acesso</h4>
+                        <p>Para solicitar a criação do seu acesso ao sistema SipWeb, por favor, siga uma das opções abaixo:</p>
+                        <ul>
+                            <li>Opção 1: Procure o responsável por fornecer a senha de acesso ao Sistema na <a href="https://maps.app.goo.gl/A1LAM2Nidjmn4LkN6" target="_blank">sede</a> da Secretaria Municipal de Educação. Leve sua carteira de identidade.</li>
+                            <br>
+                            <li>Opção 2: Envie um e-mail com seu Nome Completo e Número de Telefone para: <a href="mailto:kairobrendoseduc@gmail.com">kairobrendoseduc@gmail.com</a> solicitando criação de acesso de forma online (necessário assinatura com GOV.br)</li>
+                        </ul>
+                        <p>Aguarde o contato por WhatsApp para mais instruções.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>**Secretaria Municipal de Educação - Sítio Novo do Maranhão**</p>
+        <p>Endereço: Avenida Leonardo de Almeida, nº 123, Centro – Sítio Novo/MA</p>
+        <p>E-mail: educacao@sitionovo.ma.gov.br | Telefone: (99) 0000-0000</p>
+        <p>Horário de atendimento: 8h às 12h / 14h às 17h</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+        function showAccessInstructions() {
+            const instructions = document.getElementById('access-instructions');
+            // Toggle (Alterna) a classe hidden. Se estiver oculta, exibe, e vice-versa.
+            instructions.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
