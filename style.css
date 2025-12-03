@@ -262,21 +262,40 @@ body {
     text-align: center; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     border-top: 5px solid var(--verde-escuro); 
-    transition: transform 0.3s; 
+    transition: transform 0.3s;
+    position: relative;
 }
+
 .indicator-item:hover { 
     transform: translateY(-5px); 
 }
+
 .indicator-item h4 { 
     font-size: 1.8em; 
     color: var(--verde-escuro); 
     margin: 5px 0; 
 }
+
 .indicator-item p { 
     font-size: 0.9em; 
     color: #555; 
     text-transform: uppercase; 
     font-weight: bold; 
+}
+
+.indicator-year {
+    font-size: 0.8em; 
+    font-weight: normal;
+    color: #888; 
+    position: absolute;
+    /* FIXO: Posiciona no canto superior direito do card, dentro do padding */
+    top: 5px; 
+    right: 5px; 
+    background-color: #f0f0f0; 
+    padding: 2px 4px;
+    border-radius: 3px;
+    border: 1px solid #ddd; 
+    z-index: 10; /* Garante que fique sobre qualquer coisa */
 }
 
 /* -------------------------------------- */
