@@ -57,28 +57,33 @@
                 <h3>Informações de Contato</h3>
                 <div class="info-item"><i class="fas fa-map-marker-alt"></i> Avenida Leonardo de Almeida, S/N, Centro</div>
                 <div class="info-item"><i class="fas fa-city"></i> Sítio Novo - MA</div>
-                <div class="info-item"><i class="fas fa-envelope"></i> educacao@sitionovo.ma.gov.br</div>
+                <div class="info-item"><i class="fas fa-envelope"></i> semed.sitionovo.ma@gmail.com</div>
                 <!--<div class="info-item"><i class="fas fa-phone"></i> (99) 0000-0000</div>-->
                 <div class="info-item"><i class="fas fa-clock"></i> Segunda a Sexta: 8h às 12h / 14h às 17h</div>
             </div>
 
             <div class="contact-form">
                 <h3>Envie sua Mensagem</h3>
-                <form action="#" method="POST">
+
+                <form action="https://formspree.io/f/manrbqbz" method="POST">
+
                     <label for="nome">Nome Completo</label>
-                    <input type="text" id="nome" name="nome" required>
-                    
+                    <input type="text" id="nome" name="Nome Completo" required>
+        
                     <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required>
-                    
+                    <input type="email" id="email" name="_replyto" required>
+        
                     <label for="assunto">Assunto</label>
-                    <input type="text" id="assunto" name="assunto">
-                    
+                    <input type="text" id="assunto" name="Assunto" required>
+        
                     <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" required></textarea>
+                    <textarea id="mensagem" name="Mensagem" required></textarea>
                     
-                    <button type="submit">Enviar Mensagem</button>
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
                 </form>
+
             </div>
         </div>
         
@@ -92,7 +97,7 @@
     <footer class="footer">
         <p>Secretaria Municipal de Educação de Sítio Novo Maranhão</p>
         <p>Endereço: Avenida Leonardo de Almeida, S/N, Centro, Cep: 65925-000</p>
-        <p>E-mail: educacao@sitionovo.ma.gov.br</p>
+        <p>E-mail: semed.sitionovo.ma@gmail.com</p>
         <p>Horário de atendimento: 8h às 12h / 14h às 17h</p>
     </footer>
 
