@@ -549,19 +549,28 @@ body {
 /* -------------------------------------- */
 /* --- 14. ESTILOS DA PÁGINA CONTATO --- */
 /* -------------------------------------- */
+.contact-section {
+    text-align: center;
+    padding: 20px 0;
+}
+
 .contact-form-container {
     display: flex;
-    gap: 40px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 50px;
+    gap: 30px;
 }
 
 .contact-info, .contact-form {
     flex: 1;
-    padding: 20px;
+    min-width: 300px;
+    padding: 30px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info h3, .contact-form h3 {
@@ -569,27 +578,35 @@ body {
     border-bottom: 2px solid #eee;
     padding-bottom: 10px;
     margin-top: 0;
+    text-align: center;
 }
 
-.info-item {
-    margin-bottom: 15px;
+.contact-info .info-item {
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
     font-size: 1.1em;
 }
 
-.info-item i {
+.contact-info .info-item i {
     color: var(--verde-escuro);
-    margin-right: 15px;
+    margin-right: 10px;
     font-size: 1.5em;
+    
+}
+
+/* Estilo do Formulário Interno */
+.contact-form form {
+    display: block; /* Garante que o formulário interno preencha o contêiner */
 }
 
 /* Estilo do Formulário */
 .contact-form label {
     display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #333;
 }
 
 .contact-form input[type="text"],
@@ -597,14 +614,40 @@ body {
 .contact-form textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     box-sizing: border-box; 
+    font-size: 1em; 
 }
 
 .contact-form textarea {
     resize: vertical;
-    min-height: 120px;
+}
+
+/* Estilo do Botão de Envio (usando a nova classe .submit-button) */
+.submit-button {
+    /* O SELETOR ANTIGO ERA APENAS 'button[type="submit"]' */
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background-color: var(--verde-escuro);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #146e2e;
+}
+
+.submit-button i {
+    margin-right: 8px;
 }
 
 .contact-form button {
@@ -772,8 +815,12 @@ body {
 @media (max-width: 768px) {
     .contact-form-container {
         flex-direction: column;
+        padding: 0 20px;
+        align-items: center;
     }
     .contact-info, .contact-form {
+        width: 100%;
+        min-width: 0;
         margin-bottom: 20px;
     }
     .map-container {
