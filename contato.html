@@ -65,7 +65,7 @@
             <div class="contact-form">
                 <h3>Envie sua Mensagem</h3>
 
-                <form action="https://formspree.io/f/manrbqbz" method="POST">
+                <form action="https://formspree.io/f/manrbqbz" method="POST" id="contact-form">
 
                     <label for="nome">Nome Completo</label>
                     <input type="text" id="nome" name="Nome Completo" required>
@@ -82,9 +82,11 @@
                     <button type="submit" class="submit-button">
                         <i class="fas fa-paper-plane"></i> Enviar Mensagem
                     </button>
-                </form>
 
+                    <p id="form-status" style="margin-top: 15px; font-weight: bold;"></p>
+                </form>
             </div>
+            
         </div>
         
         <div class="map-container">

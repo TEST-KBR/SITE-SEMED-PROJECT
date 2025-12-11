@@ -666,6 +666,23 @@ body {
     background-color: #146e2e;
 }
 
+/* ESTILO - STATUS DE ENVIO DE MENSAGEM */
+.status-success {
+    color: var(--verde-escuro);
+    border: 1px solid var(--verde-escuro);
+    padding: 10px;
+    background-color: var(--verde-banner); /* Cor de fundo suave */
+    border-radius: 5px;
+}
+
+.status-error {
+    color: var(--vermelho-home);
+    border: 1px solid var(--vermelho-home);
+    padding: 10px;
+    background-color: #ffe6e6; /* Cor de fundo de erro */
+    border-radius: 5px;
+}
+
 /* Mapa */
 .map-container {
     margin-top: 40px;
