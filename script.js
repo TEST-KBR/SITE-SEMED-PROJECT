@@ -98,3 +98,87 @@ if (form && statusMessage) {
         }
     });
 }
+
+
+// --- Lógica da Página de Indicadores (indicadores.html) ---
+
+async function loadIndicatorsData() {
+    const filtersContainer = document.getElementById('indicator-filters');
+    const dataGrid = document.getElementById('indicator-data-grid');
+    
+    // Verifica se os contêineres existem (se estamos na página correta)
+    if (!filtersContainer || !dataGrid) return; 
+
+    try {
+        // 1. Fetch dos dados do JSON
+        const response = await fetch('src/dados/indicadores.json');
+        if (!response.ok) {
+            throw new Error(`Erro HTTP! status: ${response.status}`);
+        }
+        const indicatorsData = await response.json();
+        
+        // Armazena os dados globalmente (ou usa cache) para evitar novo fetch
+        window.allIndicatorsData = indicatorsData; 
+        
+        // 2. Cria os botões de filtro
+        const indicatorNames = Object.keys(indicatorsData);
+        filtersContainer.innerHTML = ''; // Limpa o conteúdo inicial
+        
+        indicatorNames.forEach(name => {
+            const button = document.createElement('button');
+            button.className = 'indicator-button';
+            button.textContent = name;
+            
+            // Adiciona o evento de clique ao botão
+            button.addEventListener('click', () => {
+                displayIndicatorDetails(name, indicatorsData, filtersContainer, dataGrid);
+            });
+            
+            filtersContainer.appendChild(button);
+        });
+
+        // 3. Carrega o primeiro indicador por padrão (opcional)
+        if (indicatorNames.length > 0) {
+            // Seleciona o primeiro indicador para mostrar ao carregar a página
+            displayIndicatorDetails(indicatorNames[0], indicatorsData, filtersContainer, dataGrid);
+        }
+
+    } catch (error) {
+        console.error("Erro ao carregar indicadores:", error);
+        dataGrid.innerHTML = `<p class="status-error">Não foi possível carregar os dados dos indicadores. Erro: ${error.message}</p>`;
+    }
+}
+
+function displayIndicatorDetails(indicatorName, data, filtersContainer, dataGrid) {
+    const indicatorDetails = data[indicatorName];
+    
+    // 1. Atualiza o estado "ativo" dos botões
+    Array.from(filtersContainer.children).forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent === indicatorName) {
+            btn.classList.add('active');
+        }
+    });
+
+    // 2. Cria e injeta os cards
+    dataGrid.innerHTML = ''; // Limpa os cards anteriores
+    
+    indicatorDetails.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'data-card';
+        
+        // Estrutura do Card de Dados (Valor, Ano, Detalhe)
+        card.innerHTML = `
+            <span class="data-year">${item.ano}</span>
+            <h4>${indicatorName}</h4>
+            <div class="data-value">${item.valor}</div>
+            <p class="data-detail">Meta: ${item.meta}</p>
+            <p class="data-description">${item.detalhe}</p>
+        `;
+        
+        dataGrid.appendChild(card);
+    });
+}
+
+// Inicializa o carregamento dos dados quando a página estiver pronta
+loadIndicatorsData();
