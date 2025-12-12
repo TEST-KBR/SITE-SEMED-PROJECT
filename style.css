@@ -355,6 +355,26 @@ body {
     border-color: var(--verde-escuro);
 }
 
+/* Estilo da Caixa de Descrição */
+.indicator-description-box {
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    background-color: var(--verde-banner); /* Cor de fundo suave */
+    border: 1px solid #c0e0cc;
+    border-radius: 8px;
+    text-align: center;
+    min-height: 50px; /* Garante que a caixa tenha um tamanho mínimo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.indicator-description-box p {
+    margin: 0;
+    color: #333;
+    line-height: 1.6;
+    font-style: italic;
+}
+
 /* Contêiner dos Cards de Dados */
 .indicator-data-grid {
     display: grid;

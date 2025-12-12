@@ -1,31 +1,28 @@
 {
-    "Taxa de Aprovação": [
-        { "ano": 2024, "valor": "85%", "meta": "90%", "detalhe": "Anos Finais" },
-        { "ano": 2023, "valor": "80%", "meta": "90%", "detalhe": "Anos Finais" },
-        { "ano": 2022, "valor": "78%", "meta": "85%", "detalhe": "Anos Finais" },
-        { "ano": 2021, "valor": "89%", "meta": "85%", "detalhe": "Anos Finais" },
-        { "ano": 2021, "valor": "100%", "meta": "90%", "detalhe": "Anos Finais" }
-    ],
-    "IDEB (Anos Iniciais)": [
-        { "ano": 2021, "valor": "6.5", "meta": "6.0", "detalhe": "Meta batida" },
-        { "ano": 2019, "valor": "5.8", "meta": "5.5", "detalhe": "Acima da meta" },
-        { "ano": 2017, "valor": "5.2", "meta": "5.0", "detalhe": "Em crescimento" }
-    ],
-
-    "IDEB (Anos Finais)": [
-        { "ano": 2021, "valor": "3.8", "meta": "4.5", "detalhe": "Abaixo da meta" },
-        { "ano": 2019, "valor": "3.5", "meta": "4.2", "detalhe": "Em recuperação" }
-    ],
-
-
-    "Taxa de Abandono": [
-        { "ano": 2024, "valor": "8%", "meta": "5%", "detalhe": "Época de Pandemia" },
-        { "ano": 2023, "valor": "10%", "meta": "7%", "detalhe": "Falta de Transporte" },
-        { "ano": 2022, "valor": "12%", "meta": "7%", "detalhe": "Pós-pandemia" }
-    ],
-    "Frequência Escolar": [
-        { "ano": 2024, "valor": "95%", "meta": "95%", "detalhe": "Em conformidade" },
-        { "ano": 2023, "valor": "92%", "meta": "95%", "detalhe": "Próximo da meta" }
-    ]
+    "Taxa de Aprovação": {
+        "descricao": "Percentual de alunos que concluíram o ano letivo com êxito, sem reprovação. É um indicador chave da eficácia do processo de ensino.",
+        "dados": [
+            { "ano": 2024, "valor": "85%", "meta": "90%", "detalhe": "Anos Finais" },
+            { "ano": 2023, "valor": "80%", "meta": "90%", "detalhe": "Anos Finais" },
+            { "ano": 2022, "valor": "78%", "meta": "85%", "detalhe": "Anos Finais" }
+        ]
+    },
     
+    "IDEB (Anos Iniciais)": {
+        "descricao": "Índice de Desenvolvimento da Educação Básica para alunos do 1º ao 5º ano. Combina proficiência em leitura/matemática e taxa de fluxo escolar.",
+        "dados": [
+            { "ano": 2021, "valor": "6.5", "meta": "6.0", "detalhe": "Meta batida" },
+            { "ano": 2019, "valor": "5.8", "meta": "5.5", "detalhe": "Acima da meta" },
+            { "ano": 2017, "valor": "5.2", "meta": "5.0", "detalhe": "Em crescimento" }
+        ]
+    },
+    
+    "Taxa de Abandono": {
+        "descricao": "Percentual de alunos que abandonaram a escola durante o ano letivo. O objetivo é manter esse índice o mais baixo possível.",
+        "dados": [
+            { "ano": 2024, "valor": "8%", "meta": "5%", "detalhe": "Época de Pandemia" },
+            { "ano": 2023, "valor": "10%", "meta": "7%", "detalhe": "Falta de Transporte" },
+            { "ano": 2022, "valor": "12%", "meta": "7%", "detalhe": "Pós-pandemia" }
+        ]
+    }
 }

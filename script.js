@@ -105,54 +105,53 @@ if (form && statusMessage) {
 async function loadIndicatorsData() {
     const filtersContainer = document.getElementById('indicator-filters');
     const dataGrid = document.getElementById('indicator-data-grid');
+    const descriptionBox = document.getElementById('indicator-description-box'); // NOVO ELEMENTO
     
-    // Verifica se os contêineres existem (se estamos na página correta)
     if (!filtersContainer || !dataGrid) return; 
 
     try {
-        // 1. Fetch dos dados do JSON
-        const response = await fetch('src/dados/indicadores.json');
+        const response = await fetch('src/dados/indicadores.json'); // Caminho atualizado
         if (!response.ok) {
             throw new Error(`Erro HTTP! status: ${response.status}`);
         }
         const indicatorsData = await response.json();
-        
-        // Armazena os dados globalmente (ou usa cache) para evitar novo fetch
         window.allIndicatorsData = indicatorsData; 
         
-        // 2. Cria os botões de filtro
+        // 1. Cria os botões de filtro
         const indicatorNames = Object.keys(indicatorsData);
-        filtersContainer.innerHTML = ''; // Limpa o conteúdo inicial
+        filtersContainer.innerHTML = ''; 
         
+        // Mensagem inicial de instrução
+        dataGrid.innerHTML = `<p style="text-align: center; color: #666; padding: 50px;">Selecione um indicador acima para visualizar os dados.</p>`;
+        descriptionBox.innerHTML = ''; // Garante que a descrição também esteja vazia no início
+
         indicatorNames.forEach(name => {
             const button = document.createElement('button');
             button.className = 'indicator-button';
             button.textContent = name;
             
-            // Adiciona o evento de clique ao botão
             button.addEventListener('click', () => {
-                displayIndicatorDetails(name, indicatorsData, filtersContainer, dataGrid);
+                // Passa o elemento da descrição para a função de exibição
+                displayIndicatorDetails(name, indicatorsData, filtersContainer, dataGrid, descriptionBox);
             });
             
             filtersContainer.appendChild(button);
         });
 
-        // 3. Carrega o primeiro indicador por padrão (opcional)
-        if (indicatorNames.length > 0) {
-            // Seleciona o primeiro indicador para mostrar ao carregar a página
-            displayIndicatorDetails(indicatorNames[0], indicatorsData, filtersContainer, dataGrid);
-        }
-
+        // 2. REMOVIDO: NENHUM indicador é carregado por padrão.
+        
     } catch (error) {
         console.error("Erro ao carregar indicadores:", error);
         dataGrid.innerHTML = `<p class="status-error">Não foi possível carregar os dados dos indicadores. Erro: ${error.message}</p>`;
     }
 }
 
-function displayIndicatorDetails(indicatorName, data, filtersContainer, dataGrid) {
+function displayIndicatorDetails(indicatorName, data, filtersContainer, dataGrid, descriptionBox) {
+    // 1. Pega os detalhes completos do indicador (incluindo descrição e dados)
     const indicatorDetails = data[indicatorName];
+    const dataArray = indicatorDetails.dados; // O array de dados agora está dentro da chave 'dados'
     
-    // 1. Atualiza o estado "ativo" dos botões
+    // 2. Atualiza o estado "ativo" dos botões
     Array.from(filtersContainer.children).forEach(btn => {
         btn.classList.remove('active');
         if (btn.textContent === indicatorName) {
@@ -160,14 +159,17 @@ function displayIndicatorDetails(indicatorName, data, filtersContainer, dataGrid
         }
     });
 
-    // 2. Cria e injeta os cards
+    // 3. Exibe a DESCRIÇÃO
+    descriptionBox.innerHTML = `<p>${indicatorDetails.descricao}</p>`;
+
+    // 4. Cria e injeta os cards
     dataGrid.innerHTML = ''; // Limpa os cards anteriores
     
-    indicatorDetails.forEach(item => {
+    dataArray.forEach(item => {
         const card = document.createElement('div');
         card.className = 'data-card';
         
-        // Estrutura do Card de Dados (Valor, Ano, Detalhe)
+        // Agora o card pode mostrar a meta e o detalhe
         card.innerHTML = `
             <span class="data-year">${item.ano}</span>
             <h4>${indicatorName}</h4>
