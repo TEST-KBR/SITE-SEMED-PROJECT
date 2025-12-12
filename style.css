@@ -402,7 +402,7 @@ body {
     font-style: italic;
 }
 
-/* Contêiner dos Cards de Dados */
+/* Contêiner dos Cards de Dados - tamanho dos cards */
 .indicator-data-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -456,6 +456,27 @@ body {
 .data-description {
     font-size: 0.85em;
     color: #888;
+    line-height: 1.4;
+}
+
+/* Estilo da Fonte info no Card */
+.data-source {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+    font-size: 0.75em;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.data-source i {
+    margin-right: 5px;
+}
+
+/* Ajuste fino nos textos opcionais */
+.data-detail, .data-description {
+    margin: 5px 0;
     line-height: 1.4;
 }
 

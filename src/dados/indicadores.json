@@ -16,16 +16,16 @@
             "Anos Iniciais": {
                 "descricao": "Resultados de proficiência e fluxo escolar para os anos iniciais (1º ao 5º ano) do Ensino Fundamental.",
                 "dados": [
-                    { "ano": 2021, "valor": "6.5", "meta": "6.0", "detalhe": "Meta batida" },
-                    { "ano": 2019, "valor": "5.8", "meta": "5.5", "detalhe": "Acima da meta" },
-                    { "ano": 2017, "valor": "5.2", "meta": "5.0", "detalhe": "Em crescimento" }
+                    { "ano": 2021, "valor": "6.5", "meta": "6.0", "detalhe": "Meta batida", "fonte": "QeDu" },
+                    { "ano": 2019, "valor": "5.8", "meta": "5.5", "detalhe": "Acima da meta", "fonte": "QeDu" },
+                    { "ano": 2017, "valor": "5.2", "meta": "5.0", "detalhe": "Em crescimento", "fonte": "QeDu" }
                 ]
             },
             "Anos Finais": {
                 "descricao": "Resultados de proficiência e fluxo escolar para os anos finais (6º ao 9º ano) do Ensino Fundamental.",
                 "dados": [
-                    { "ano": 2021, "valor": "3.8", "meta": "4.5", "detalhe": "Abaixo da meta" },
-                    { "ano": 2019, "valor": "3.5", "meta": "4.2", "detalhe": "Em recuperação" }
+                    { "ano": 2021, "valor": "3.8", "meta": "4.5", "detalhe": "Abaixo da meta", "fonte": "QeDu" },
+                    { "ano": 2019, "valor": "3.5", "meta": "4.2", "detalhe": "Em recuperação", "fonte": "QeDu" }
                 ]
             }
         }
@@ -38,6 +38,17 @@
             { "ano": 2024, "valor": "8%", "detalhe": "Época de Pandemia" },
             { "ano": 2023, "valor": "10%", "detalhe": "Falta de Transporte" },
             { "ano": 2022, "valor": "12%", "detalhe": "Pós-pandemia" }
+        ]
+    },
+    
+    "Taxa de Reprovação": {
+        "tipo": "simples",
+        "descricao": "Percentual de alunos que não atingiram os critérios para promoção de série.",
+        "dados": [
+            { "ano": 2025, "valor": "3,2%", "fonte": "Censo Escolar / INEP" },
+            { "ano": 2024, "valor": "2%", "fonte": "Censo Escolar / INEP" },
+            { "ano": 2023, "valor": "1%", "fonte": "Censo Escolar / INEP" },
+            { "ano": 2022, "valor": "2%", "fonte": "Censo Escolar / INEP" }
         ]
     }
 }

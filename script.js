@@ -214,11 +214,19 @@ function displayDataCards(fullName, dataArray, dataGrid) {
         const card = document.createElement('div');
         card.className = 'data-card';
         
-        // --- LÓGICA DA META OPCIONAL ---
-        // Se item.meta existir e não for vazio, cria o HTML da meta. 
-        // Caso contrário, retorna uma string vazia.
+        // 1. Verificação da Meta
         const metaHTML = (item.meta && item.meta !== "") 
             ? `<p class="data-detail"><strong>Meta:</strong> ${item.meta}</p>` 
+            : "";
+        
+        // 2. Verificação do Detalhe
+        const detalheHTML = (item.detalhe && item.detalhe !== "") 
+            ? `<p class="data-description">${item.detalhe}</p>` 
+            : "";
+
+        // 3. Verificação da Fonte
+        const fonteHTML = (item.fonte && item.fonte !== "")
+            ? `<div class="data-source"><i class="fas fa-info-circle"></i> Fonte: ${item.fonte}</div>`
             : "";
         
         card.innerHTML = `
@@ -226,7 +234,8 @@ function displayDataCards(fullName, dataArray, dataGrid) {
             <h4>${fullName}</h4>
             <div class="data-value">${item.valor}</div>
             ${metaHTML} 
-            <p class="data-description">${item.detalhe}</p>
+            ${detalheHTML}
+            ${fonteHTML}
         `;
         
         dataGrid.appendChild(card);
