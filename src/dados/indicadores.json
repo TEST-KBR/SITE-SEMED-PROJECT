@@ -1,28 +1,43 @@
 {
     "Taxa de Aprovação": {
+        "tipo": "simples",
         "descricao": "Percentual de alunos que concluíram o ano letivo com êxito, sem reprovação. É um indicador chave da eficácia do processo de ensino.",
         "dados": [
-            { "ano": 2024, "valor": "85%", "meta": "90%", "detalhe": "Anos Finais" },
-            { "ano": 2023, "valor": "80%", "meta": "90%", "detalhe": "Anos Finais" },
-            { "ano": 2022, "valor": "78%", "meta": "85%", "detalhe": "Anos Finais" }
+            { "ano": 2024, "valor": "85%", "detalhe": "Anos Finais" },
+            { "ano": 2023, "valor": "80%", "detalhe": "Anos Finais" },
+            { "ano": 2022, "valor": "78%", "detalhe": "Anos Finais" }
         ]
     },
-    
-    "IDEB (Anos Iniciais)": {
-        "descricao": "Índice de Desenvolvimento da Educação Básica para alunos do 1º ao 5º ano. Combina proficiência em leitura/matemática e taxa de fluxo escolar.",
-        "dados": [
-            { "ano": 2021, "valor": "6.5", "meta": "6.0", "detalhe": "Meta batida" },
-            { "ano": 2019, "valor": "5.8", "meta": "5.5", "detalhe": "Acima da meta" },
-            { "ano": 2017, "valor": "5.2", "meta": "5.0", "detalhe": "Em crescimento" }
-        ]
+
+    "IDEB": {
+        "tipo": "agrupado",
+        "descricao": "O Índice de Desenvolvimento da Educação Básica é o principal indicador de qualidade da educação no Brasil.",
+        "subIndicadores": {
+            "Anos Iniciais": {
+                "descricao": "Resultados de proficiência e fluxo escolar para os anos iniciais (1º ao 5º ano) do Ensino Fundamental.",
+                "dados": [
+                    { "ano": 2021, "valor": "6.5", "meta": "6.0", "detalhe": "Meta batida" },
+                    { "ano": 2019, "valor": "5.8", "meta": "5.5", "detalhe": "Acima da meta" },
+                    { "ano": 2017, "valor": "5.2", "meta": "5.0", "detalhe": "Em crescimento" }
+                ]
+            },
+            "Anos Finais": {
+                "descricao": "Resultados de proficiência e fluxo escolar para os anos finais (6º ao 9º ano) do Ensino Fundamental.",
+                "dados": [
+                    { "ano": 2021, "valor": "3.8", "meta": "4.5", "detalhe": "Abaixo da meta" },
+                    { "ano": 2019, "valor": "3.5", "meta": "4.2", "detalhe": "Em recuperação" }
+                ]
+            }
+        }
     },
     
     "Taxa de Abandono": {
+        "tipo": "simples",
         "descricao": "Percentual de alunos que abandonaram a escola durante o ano letivo. O objetivo é manter esse índice o mais baixo possível.",
         "dados": [
-            { "ano": 2024, "valor": "8%", "meta": "5%", "detalhe": "Época de Pandemia" },
-            { "ano": 2023, "valor": "10%", "meta": "7%", "detalhe": "Falta de Transporte" },
-            { "ano": 2022, "valor": "12%", "meta": "7%", "detalhe": "Pós-pandemia" }
+            { "ano": 2024, "valor": "8%", "detalhe": "Época de Pandemia" },
+            { "ano": 2023, "valor": "10%", "detalhe": "Falta de Transporte" },
+            { "ano": 2022, "valor": "12%", "detalhe": "Pós-pandemia" }
         ]
     }
 }

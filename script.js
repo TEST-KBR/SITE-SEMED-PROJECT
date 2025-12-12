@@ -104,77 +104,128 @@ if (form && statusMessage) {
 
 async function loadIndicatorsData() {
     const filtersContainer = document.getElementById('indicator-filters');
+    const subFiltersContainer = document.getElementById('indicator-subfilters'); // NOVO ELEMENTO
     const dataGrid = document.getElementById('indicator-data-grid');
-    const descriptionBox = document.getElementById('indicator-description-box'); // NOVO ELEMENTO
+    const descriptionBox = document.getElementById('indicator-description-box');
     
-    if (!filtersContainer || !dataGrid) return; 
+    if (!filtersContainer || !dataGrid || !subFiltersContainer || !descriptionBox) return; 
 
     try {
-        const response = await fetch('src/dados/indicadores.json'); // Caminho atualizado
+        const response = await fetch('src/dados/indicadores.json');
         if (!response.ok) {
             throw new Error(`Erro HTTP! status: ${response.status}`);
         }
         const indicatorsData = await response.json();
         window.allIndicatorsData = indicatorsData; 
         
-        // 1. Cria os botões de filtro
         const indicatorNames = Object.keys(indicatorsData);
         filtersContainer.innerHTML = ''; 
-        
-        // Mensagem inicial de instrução
         dataGrid.innerHTML = `<p style="text-align: center; color: #666; padding: 50px;">Selecione um indicador acima para visualizar os dados.</p>`;
-        descriptionBox.innerHTML = ''; // Garante que a descrição também esteja vazia no início
+        descriptionBox.innerHTML = '';
+        subFiltersContainer.classList.remove('active'); // Garante que o sub-menu comece escondido
+        subFiltersContainer.innerHTML = ''; // Limpa qualquer conteúdo prévio
 
         indicatorNames.forEach(name => {
-            const button = document.createElement('button');
-            button.className = 'indicator-button';
-            button.textContent = name;
+            const button = createIndicatorButton(name, 'indicator-button');
             
             button.addEventListener('click', () => {
-                // Passa o elemento da descrição para a função de exibição
-                displayIndicatorDetails(name, indicatorsData, filtersContainer, dataGrid, descriptionBox);
+                // Remove a seleção de todos os botões e seleciona o clicado
+                Array.from(filtersContainer.children).forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Lida com a exibição, podendo acionar o sub-menu
+                handleIndicatorClick(name, indicatorsData, filtersContainer, subFiltersContainer, dataGrid, descriptionBox);
             });
             
             filtersContainer.appendChild(button);
         });
 
-        // 2. REMOVIDO: NENHUM indicador é carregado por padrão.
-        
     } catch (error) {
         console.error("Erro ao carregar indicadores:", error);
         dataGrid.innerHTML = `<p class="status-error">Não foi possível carregar os dados dos indicadores. Erro: ${error.message}</p>`;
     }
 }
 
-function displayIndicatorDetails(indicatorName, data, filtersContainer, dataGrid, descriptionBox) {
-    // 1. Pega os detalhes completos do indicador (incluindo descrição e dados)
-    const indicatorDetails = data[indicatorName];
-    const dataArray = indicatorDetails.dados; // O array de dados agora está dentro da chave 'dados'
+function createIndicatorButton(name, className) {
+    const button = document.createElement('button');
+    button.className = className;
+    button.textContent = name;
+    return button;
+}
+
+function handleIndicatorClick(indicatorName, data, filtersContainer, subFiltersContainer, dataGrid, descriptionBox) {
+    const indicatorGroup = data[indicatorName];
     
-    // 2. Atualiza o estado "ativo" dos botões
-    Array.from(filtersContainer.children).forEach(btn => {
-        btn.classList.remove('active');
-        if (btn.textContent === indicatorName) {
-            btn.classList.add('active');
-        }
-    });
+    // 1. Limpa o sub-filtro e o grid de dados
+    subFiltersContainer.innerHTML = '';
+    dataGrid.innerHTML = '';
 
-    // 3. Exibe a DESCRIÇÃO
-    descriptionBox.innerHTML = `<p>${indicatorDetails.descricao}</p>`;
+    // 2. Exibe a DESCRIÇÃO PRINCIPAL
+    descriptionBox.innerHTML = `<p>${indicatorGroup.descricao}</p>`;
 
-    // 4. Cria e injeta os cards
-    dataGrid.innerHTML = ''; // Limpa os cards anteriores
+    if (indicatorGroup.tipo === 'agrupado' && indicatorGroup.subIndicadores) {
+        // É um indicador AGRUPADO (ex: IDEB)
+        subFiltersContainer.classList.add('active'); // Mostra o sub-menu
+
+        const subIndicatorNames = Object.keys(indicatorGroup.subIndicadores);
+        
+        // Mensagem inicial de instrução para o sub-menu
+        dataGrid.innerHTML = `<p style="text-align: center; color: #666; padding: 50px;">Selecione uma categoria de ${indicatorName} para ver os dados.</p>`;
+
+
+        // 3. Cria os botões do sub-menu
+        subIndicatorNames.forEach(subName => {
+            const subButton = createIndicatorButton(subName, 'indicator-button');
+            
+            subButton.addEventListener('click', () => {
+                // Remove a seleção de todos os sub-botões e seleciona o clicado
+                Array.from(subFiltersContainer.children).forEach(btn => btn.classList.remove('active'));
+                subButton.classList.add('active');
+                
+                // Exibe os dados e descrição do SUB-INDICADOR
+                displaySubIndicatorData(indicatorName, subName, indicatorGroup.subIndicadores[subName], dataGrid, descriptionBox);
+            });
+            
+            subFiltersContainer.appendChild(subButton);
+        });
+        
+    } else {
+        // É um indicador SIMPLES (ex: Taxa de Aprovação)
+        subFiltersContainer.classList.remove('active'); // Esconde o sub-menu
+        
+        // Exibe os dados do indicador simples
+        displayDataCards(indicatorName, indicatorGroup.dados, dataGrid);
+    }
+}
+
+function displaySubIndicatorData(mainName, subName, subIndicatorData, dataGrid, descriptionBox) {
+    // 1. Exibe a DESCRIÇÃO ESPECÍFICA do sub-indicador
+    descriptionBox.innerHTML = `<p><strong>${mainName} - ${subName}:</strong> ${subIndicatorData.descricao}</p>`;
+
+    // 2. Exibe os Cards de Dados
+    displayDataCards(`${mainName} (${subName})`, subIndicatorData.dados, dataGrid);
+}
+
+
+function displayDataCards(fullName, dataArray, dataGrid) {
+    dataGrid.innerHTML = ''; 
     
     dataArray.forEach(item => {
         const card = document.createElement('div');
         card.className = 'data-card';
         
-        // Agora o card pode mostrar a meta e o detalhe
+        // --- LÓGICA DA META OPCIONAL ---
+        // Se item.meta existir e não for vazio, cria o HTML da meta. 
+        // Caso contrário, retorna uma string vazia.
+        const metaHTML = (item.meta && item.meta !== "") 
+            ? `<p class="data-detail"><strong>Meta:</strong> ${item.meta}</p>` 
+            : "";
+        
         card.innerHTML = `
             <span class="data-year">${item.ano}</span>
-            <h4>${indicatorName}</h4>
+            <h4>${fullName}</h4>
             <div class="data-value">${item.valor}</div>
-            <p class="data-detail">Meta: ${item.meta}</p>
+            ${metaHTML} 
             <p class="data-description">${item.detalhe}</p>
         `;
         

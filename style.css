@@ -355,6 +355,33 @@ body {
     border-color: var(--verde-escuro);
 }
 
+/* Estilo para os Sub-filtros */
+.indicator-filters.subfilters {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ccc;
+    display: none; /* Começa escondido */
+}
+
+/* Garante que os botões do sub-filtro sejam menores */
+.indicator-filters.subfilters .indicator-button {
+    background-color: #f0f0f0;
+    color: #444;
+    border: 1px solid #d0d0d0;
+    font-size: 0.85em;
+}
+
+.indicator-filters.subfilters .indicator-button.active {
+    background-color: #0d5f22; /* Um verde ligeiramente diferente para o sub-ativo */
+    color: white;
+    border-color: #0d5f22;
+}
+
+.indicator-filters.subfilters.active {
+    display: flex; /* Exibe o sub-filtro quando o botão principal agrupado for clicado */
+}
+
 /* Estilo da Caixa de Descrição */
 .indicator-description-box {
     max-width: 800px;
@@ -418,6 +445,18 @@ body {
     font-size: 0.8em;
     font-weight: bold;
     color: #555;
+}
+
+.data-detail {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.data-description {
+    font-size: 0.85em;
+    color: #888;
+    line-height: 1.4;
 }
 
 
