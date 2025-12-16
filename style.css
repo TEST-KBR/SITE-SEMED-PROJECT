@@ -448,12 +448,12 @@ body {
 
 .data-card .data-year {
     position: absolute;
-    top: 5px;
+    top: 7px;
     right: 15px;
-    background-color: #f0f0f0;
+    background-color: var(--verde-banner);
     padding: 3px 8px;
     border-radius: 5px;
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-weight: bold;
     color: #555;
 }
@@ -494,25 +494,33 @@ body {
 
 /* Estilo para o Card Mais Recente */
 .data-card.latest-data {
-    border-left: 5px solid #f1c40f; /* Borda dourada/amarela para destaque */
-    background-color: #fffdf0; /* Fundo levemente amarelado */
-    /*transform: scale(1.02);  Fica ligeiramente maior que os outros */
+    /* Usamos um verde bem clarinho no fundo para não cansar a vista */
+    background-color: #f0f9f1; 
+    /* A borda esquerda ganha o verde principal da logo */
+    border-left: 8px solid var(--verde-escuro); 
+    border-right: 1px solid #c0e0cc;
+    border-bottom: 1px solid #c0e0cc;
     z-index: 1;
 }
 
 /* Etiqueta "MAIS RECENTE" */
 .latest-badge {
     position: absolute;
-    top: 40px; /* Logo abaixo do ano */
+    top: 40px;
     right: 15px;
-    background-color: #f1c40f;
-    color: #000;
+    /* Verde Escuro com fundo branco/transparente para ser discreto e profissional */
+    background-color: var(--verde-escuro);
+    color: white;
     font-size: 0.65em;
     font-weight: bold;
-    padding: 2px 6px;
+    padding: 3px 6px;
     border-radius: 4px;
     text-transform: uppercase;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.latest-badge i {
+    color: #ffda44; /* Uma cor de brilho/ouro para a estrela */
+    margin-right: 3px;
 }
 
 
