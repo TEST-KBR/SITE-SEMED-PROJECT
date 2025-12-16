@@ -426,10 +426,10 @@ body {
     cursor: default;
 }
 
-.data-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    border-left-width: 8px;
+.data-card:hover, .data-card.latest-data:hover {
+    transform: translateY(-8px) scale(1.02); /* Mantém o leve aumento de tamanho */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    border-left-width: 15px;
 }
 
 .data-card h4 {
@@ -472,13 +472,14 @@ body {
 
 /* Estilo da Fonte info no Card */
 .data-source {
-    margin-top: 15px;
+    margin-top: 20px;
     padding-top: 10px;
     border-top: 1px solid #eee;
     font-size: 0.75em;
     color: #999;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    clear: both; /* Garante que não haja sobreposição de elementos flutuantes */
 }
 
 .data-source i {
@@ -489,6 +490,29 @@ body {
 .data-detail, .data-description {
     margin: 5px 0;
     line-height: 1.4;
+}
+
+/* Estilo para o Card Mais Recente */
+.data-card.latest-data {
+    border-left: 5px solid #f1c40f; /* Borda dourada/amarela para destaque */
+    background-color: #fffdf0; /* Fundo levemente amarelado */
+    /*transform: scale(1.02);  Fica ligeiramente maior que os outros */
+    z-index: 1;
+}
+
+/* Etiqueta "MAIS RECENTE" */
+.latest-badge {
+    position: absolute;
+    top: 40px; /* Logo abaixo do ano */
+    right: 15px;
+    background-color: #f1c40f;
+    color: #000;
+    font-size: 0.65em;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 

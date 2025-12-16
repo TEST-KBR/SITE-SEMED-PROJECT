@@ -210,21 +210,25 @@ function displaySubIndicatorData(mainName, subName, subIndicatorData, dataGrid, 
 function displayDataCards(fullName, dataArray, dataGrid) {
     dataGrid.innerHTML = ''; 
     
-    dataArray.forEach(item => {
+    dataArray.forEach((item, index) => { // Adicionamos o 'index' aqui
         const card = document.createElement('div');
         card.className = 'data-card';
         
-        // 1. Verificação da Meta
+        // --- LÓGICA DE DESTAQUE (Mais Recente) ---
+        let badgeHTML = "";
+        if (index === 0) {
+            card.classList.add('latest-data'); // Adiciona a classe de destaque
+            badgeHTML = `<span class="latest-badge"><i class="fas fa-star"></i> Atual</span>`;
+        }
+        
         const metaHTML = (item.meta && item.meta !== "") 
             ? `<p class="data-detail"><strong>Meta:</strong> ${item.meta}</p>` 
             : "";
         
-        // 2. Verificação do Detalhe
         const detalheHTML = (item.detalhe && item.detalhe !== "") 
             ? `<p class="data-description">${item.detalhe}</p>` 
             : "";
 
-        // 3. Verificação da Fonte
         const fonteHTML = (item.fonte && item.fonte !== "")
             ? `<div class="data-source"><i class="fas fa-info-circle"></i> Fonte: ${item.fonte}</div>`
             : "";
@@ -236,11 +240,13 @@ function displayDataCards(fullName, dataArray, dataGrid) {
             ${metaHTML} 
             ${detalheHTML}
             ${fonteHTML}
+            ${badgeHTML} 
         `;
         
         dataGrid.appendChild(card);
     });
 }
+
 
 // Inicializa o carregamento dos dados quando a página estiver pronta
 loadIndicatorsData();
