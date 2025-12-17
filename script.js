@@ -250,29 +250,44 @@ function displayDataCards(fullName, dataArray, dataGrid) {
 loadIndicatorsData();
 
 
+// --- Lógica da Página de Eventos (eventos.html) ---
 async function loadEventsData() {
     const upcomingContainer = document.getElementById('upcoming-events');
     const pastContainer = document.getElementById('past-events');
     
+    // Verifica se estamos na página de eventos antes de rodar o código
     if (!upcomingContainer || !pastContainer) return;
 
     try {
         const response = await fetch('src/dados/eventos.json');
-        const events = await response.json();
+        let events = await response.json();
+
+        // 1. ORDENAÇÃO: Mais novos primeiro (baseado na data)
+        events.sort((a, b) => new Date(b.data) - new Date(a.data));
+
+        // Limpa os containers
+        upcomingContainer.innerHTML = '';
+        pastContainer.innerHTML = '';
 
         events.forEach(event => {
-            // Formatação da data (ex: 2024-09-07 para 07 SET)
+            // 2. FORMATAÇÃO DA DATA COMPLETA (Ex: 15 de fevereiro de 2024)
             const dateObj = new Date(event.data + 'T00:00:00');
-            const day = dateObj.getDate().toString().padStart(2, '0');
-            const month = dateObj.toLocaleString('pt-BR', { month: 'short' }).replace('.', '');
+            const dataFormatada = dateObj.toLocaleDateString('pt-BR', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            });
+
+            // Caminho da imagem (com fallback se estiver vazio)
+            const imgPath = event.imagem || 'src/img/eventos/default.jpg';
 
             const eventHTML = `
                 <div class="event-card ${event.concluido ? 'past' : ''}">
-                    <div class="event-date-box">
-                        <span class="day">${day}</span>
-                        <span class="month">${month}</span>
+                    <div class="event-image-container">
+                        <img src="${imgPath}" alt="${event.titulo}" class="event-img">
                     </div>
                     <div class="event-info">
+                        <span class="event-full-date"><i class="far fa-calendar-alt"></i> ${dataFormatada}</span>
                         <h4>${event.titulo}</h4>
                         <p><i class="far fa-clock"></i> ${event.hora}</p>
                         <p><i class="fas fa-map-marker-alt"></i> ${event.local}</p>
@@ -288,10 +303,45 @@ async function loadEventsData() {
             }
         });
 
+        // 3. ATIVA O CLIQUE PARA ESCONDER/MOSTRAR
+        setupEventsToggle();
+
     } catch (error) {
         console.error("Erro ao carregar eventos:", error);
+        upcomingContainer.innerHTML = "<p>Erro ao carregar eventos.</p>";
     }
 }
 
-// Chamar a função
+function setupEventsToggle() {
+    const divider = document.querySelector('.event-divider.realizado');
+    const container = document.getElementById('past-events');
+    
+    if (divider && container) {
+        // Estado inicial: Escondido
+        container.style.display = 'none';
+        divider.style.cursor = 'pointer';
+        
+        // Adiciona um aviso visual de que é clicável
+        const toggleInfo = document.createElement('span');
+        toggleInfo.style.fontSize = '0.6em';
+        toggleInfo.style.marginLeft = 'auto';
+        toggleInfo.style.backgroundColor = '#eee';
+        toggleInfo.style.padding = '4px 8px';
+        toggleInfo.style.borderRadius = '4px';
+        toggleInfo.innerHTML = 'VER FINALIZADOS <i class="fas fa-chevron-down"></i>';
+        divider.appendChild(toggleInfo);
+
+        divider.addEventListener('click', () => {
+            const isHidden = container.style.display === 'none';
+            container.style.display = isHidden ? 'grid' : 'none';
+            
+            // Atualiza o texto e ícone
+            toggleInfo.innerHTML = isHidden ? 
+                'OCULTAR <i class="fas fa-chevron-up"></i>' : 
+                'VER FINALIZADOS <i class="fas fa-chevron-down"></i>';
+        });
+    }
+}
+
+// Inicia a função
 loadEventsData();

@@ -3,9 +3,10 @@
         "id": 1,
         "titulo": "Jornada Pedagógica 2024",
         "data": "2024-02-15",
-        "hora": "08:00 - 12:00",
+        "hora": "08:00",
         "local": "Auditório Municipal",
-        "descricao": "Planejamento estratégico para o início do ano letivo com todos os professores da rede municipal.",
+        "descricao": "Planejamento estratégico para o início do ano letivo.",
+        "imagem": "src/img/eventos/jornada.jpg",
         "concluido": true
     },
     {
@@ -14,16 +15,38 @@
         "data": "2024-09-07",
         "hora": "07:30",
         "local": "Avenida Leonardo de Almeida",
-        "descricao": "Celebração da Independência do Brasil com a participação de todas as escolas municipais.",
+        "descricao": "Celebração da Independência do Brasil.",
+        "imagem": "src/img/eventos/desfile.jpg",
         "concluido": false
     },
     {
         "id": 3,
-        "titulo": "Formação Continuada: Alfabetização",
-        "data": "2024-10-20",
-        "hora": "14:00",
-        "local": "Centro de Treinamento SEMED",
-        "descricao": "Workshop focado em novas metodologias para o ciclo de alfabetização.",
+        "titulo": "III Formação LEEI",
+        "data": "2024-08-30",
+        "hora": "08:00 - 17:00",
+        "local": "Laboratório do La Roque",
+        "descricao": "Formação com professores da Educação Infantil (Pré I e Pré II)",
+        "imagem": "src/imagens/eventos/leei3.jpg",
+        "concluido": false
+    },
+    {
+        "id": 4,
+        "titulo": "IV Formação LEEI",
+        "data": "2024-10-30",
+        "hora": "08:00 - 17:00",
+        "local": "Laboratório do La Roque",
+        "descricao": "Formação com professores da Educação Infantil (Pré I e Pré II)",
+        "imagem": "src/img/eventos/leei4.jpg",
+        "concluido": false
+    },
+    {
+        "id": 5,
+        "titulo": "I Corrida - 64 anos de história",
+        "data": "2025-12-07",
+        "hora": "06:00",
+        "local": "Praça da Juventudo - Vila Nova",
+        "descricao": "Corrida de rua em comemoração aos 64 anos de emancipação política de Sítio Novo MA",
+        "imagem": "src/imagens/eventos/corrida.jpg",
         "concluido": false
     }
 ]

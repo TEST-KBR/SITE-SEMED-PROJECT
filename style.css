@@ -331,6 +331,24 @@ body {
 .event-divider.realizado {
     border-bottom-color: #999;
     color: #666;
+    transition: background 0.3s ease;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.event-divider.realizado:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Animação suave para o grid aparecer */
+#past-events {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .events-grid {
@@ -340,18 +358,72 @@ body {
 }
 
 .event-card {
-    background: white;
-    border-radius: 10px;
-    padding: 20px;
     display: flex;
-    gap: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    gap: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
     border: 1px solid #eee;
+    transition: 0.3s;
 }
 
 .event-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--verde-banner);
+}
+
+/* Container da Imagem no Card */
+.event-image-container {
+    width: 150px;
+    height: 195px;
+    flex-shrink: 0; /* Impede a imagem de esmagar */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.event-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a foto preencher o quadrado sem distorcer */
+    transition: 0.3s ease;
+}
+
+.event-card:hover .event-img {
+    transform: scale(1.1);
+}
+
+.event-info h4 {
+    margin: 5px 0;
+    color: var(--verde-escuro);
+}
+
+/* Data Completa em Destaque */
+.event-full-date {
+    display: block;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--verde-escuro);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* Ajuste no Info para Eventos Realizados */
+.event-card.past .event-full-date {
+    color: #888;
+       
+}
+
+/* Responsividade: em telas pequenas, a foto fica em cima do texto */
+@media (max-width: 480px) {
+    .event-card {
+        flex-direction: column;
+    }
+    .event-image-container {
+        width: 100%;
+        height: 180px;
+    }
 }
 
 /* Estilo do Calendário Lateral */
