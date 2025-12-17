@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "titulo": "Jornada Pedagógica 2024",
+        "data": "2024-02-15",
+        "hora": "08:00 - 12:00",
+        "local": "Auditório Municipal",
+        "descricao": "Planejamento estratégico para o início do ano letivo com todos os professores da rede municipal.",
+        "concluido": true
+    },
+    {
+        "id": 2,
+        "titulo": "Desfile de 7 de Setembro",
+        "data": "2024-09-07",
+        "hora": "07:30",
+        "local": "Avenida Leonardo de Almeida",
+        "descricao": "Celebração da Independência do Brasil com a participação de todas as escolas municipais.",
+        "concluido": false
+    },
+    {
+        "id": 3,
+        "titulo": "Formação Continuada: Alfabetização",
+        "data": "2024-10-20",
+        "hora": "14:00",
+        "local": "Centro de Treinamento SEMED",
+        "descricao": "Workshop focado em novas metodologias para o ciclo de alfabetização.",
+        "concluido": false
+    }
+]

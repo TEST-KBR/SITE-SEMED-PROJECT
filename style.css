@@ -315,6 +315,76 @@ body {
 
 
 /* -------------------------------------- */
+/* --- 10. ESTILOS DA PÁGINA EVENTOS --- */
+/* -------------------------------------- */
+
+.event-divider {
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--verde-escuro);
+    color: var(--verde-escuro);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.event-divider.realizado {
+    border-bottom-color: #999;
+    color: #666;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.event-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilo do Calendário Lateral */
+.event-date-box {
+    background-color: var(--verde-escuro);
+    color: white;
+    min-width: 70px;
+    height: 80px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.event-date-box .day { font-size: 1.5em; font-weight: bold; }
+.event-date-box .month { font-size: 0.8em; text-transform: uppercase; }
+
+/* Estilo para Eventos Concluídos (Escala de Cinza) */
+.event-card.past {
+    filter: grayscale(0.8);
+    opacity: 0.8;
+}
+
+.event-card.past .event-date-box { background-color: #666; }
+
+.event-info h4 { margin: 0 0 8px 0; color: #333; }
+.event-info p { margin: 4px 0; font-size: 0.9em; color: #666; }
+.event-info .details { margin-top: 10px; font-style: italic; color: #888; }
+
+
+/* -------------------------------------- */
 /* --- 11. ESTILOS DA PÁGINA INDICADORES --- */
 /* -------------------------------------- */
 

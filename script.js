@@ -246,7 +246,52 @@ function displayDataCards(fullName, dataArray, dataGrid) {
         dataGrid.appendChild(card);
     });
 }
-
-
 // Inicializa o carregamento dos dados quando a página estiver pronta
 loadIndicatorsData();
+
+
+async function loadEventsData() {
+    const upcomingContainer = document.getElementById('upcoming-events');
+    const pastContainer = document.getElementById('past-events');
+    
+    if (!upcomingContainer || !pastContainer) return;
+
+    try {
+        const response = await fetch('src/dados/eventos.json');
+        const events = await response.json();
+
+        events.forEach(event => {
+            // Formatação da data (ex: 2024-09-07 para 07 SET)
+            const dateObj = new Date(event.data + 'T00:00:00');
+            const day = dateObj.getDate().toString().padStart(2, '0');
+            const month = dateObj.toLocaleString('pt-BR', { month: 'short' }).replace('.', '');
+
+            const eventHTML = `
+                <div class="event-card ${event.concluido ? 'past' : ''}">
+                    <div class="event-date-box">
+                        <span class="day">${day}</span>
+                        <span class="month">${month}</span>
+                    </div>
+                    <div class="event-info">
+                        <h4>${event.titulo}</h4>
+                        <p><i class="far fa-clock"></i> ${event.hora}</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ${event.local}</p>
+                        <p class="details">${event.descricao}</p>
+                    </div>
+                </div>
+            `;
+
+            if (event.concluido) {
+                pastContainer.innerHTML += eventHTML;
+            } else {
+                upcomingContainer.innerHTML += eventHTML;
+            }
+        });
+
+    } catch (error) {
+        console.error("Erro ao carregar eventos:", error);
+    }
+}
+
+// Chamar a função
+loadEventsData();
