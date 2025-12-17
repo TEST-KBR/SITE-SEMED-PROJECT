@@ -303,6 +303,8 @@ async function loadEventsData() {
             }
         });
 
+        // O HTML já foi construído, agora o JS pode "enxergar" as imagens.
+        setupImageModal();
         // 3. ATIVA O CLIQUE PARA ESCONDER/MOSTRAR
         setupEventsToggle();
 
@@ -345,3 +347,35 @@ function setupEventsToggle() {
 
 // Inicia a função
 loadEventsData();
+
+
+// Função para gerenciar o Modal de Imagem
+function setupImageModal() {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('img-ampliada');
+    const captionText = document.getElementById('modal-caption');
+    const closeBtn = document.querySelector('.modal-close');
+
+    if (!modal) return;
+
+    // Seleciona todas as imagens de eventos
+    document.querySelectorAll('.event-img').forEach(img => {
+        img.style.cursor = 'zoom-in'; // Muda o cursor para indicar que é clicável
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+    });
+
+    // Fecha o modal ao clicar no X
+    closeBtn.onclick = () => modal.style.display = "none";
+
+    // Fecha o modal ao clicar fora da imagem
+    modal.onclick = (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    };
+}
+
+// ATENÇÃO: Chame a função setupImageModal() dentro da loadEventsData() 
+// logo após os loops que preenchem o HTML.
