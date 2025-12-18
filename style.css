@@ -420,7 +420,7 @@ body {
     max-height: 85vh;
     border: 3px solid white;
     border-radius: 5px;
-    animation: zoomIn 0.3s;
+    animation: zoomIn 1s;
 }
 
 @keyframes zoomIn {
@@ -446,6 +446,7 @@ body {
     color: #ccc;
     padding: 10px 0;
     font-size: 1.2rem;
+    font-weight: bold;
 }
 
 /* Data Completa em Destaque */
