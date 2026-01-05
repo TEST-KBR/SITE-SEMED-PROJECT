@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
-    const secretariaDropdown = document.getElementById('secretaria-dropdown'); 
+    const secretariaDropdown = document.getElementById('institucional-dropdown'); 
 
     // --- Lógica de Abertura do Menu Principal (Hambúrguer) ---
     function toggleMenu() {
