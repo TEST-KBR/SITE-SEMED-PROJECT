@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEMED - Notícias</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <img src="logo_semed.png" alt="Logo" class="logo">
+                <div class="logo-text">
+                    <h1>SECRETARIA MUNICIPAL DE EDUCAÇÃO</h1>
+                    <p>Sítio Novo - MA</p>
+                </div>
+            </div>
+            <div class="hamburger-icon" id="hamburger"><div></div><div></div><div></div></div>
+        </div>
+        
+        <nav class="nav-menu" id="navMenu">
+            <a href="index.html" class="nav-item home-link"><i class="fas fa-home"></i> Home</a> 
+            <div class="dropdown" id="institucional-dropdown">
+                <i class="fas fa-university"></i> Institucional
+                <ul class="submenu">
+                    <li><a href="sobre.html">A Secretaria</a></li>
+                    <li><a href="documentos.html">Documentos</a></li>
+                    <li><a href="funcionarios.html">Funcionários</a></li>
+                    <li><a href="escolas.html">Escolas</a></li>
+                </ul>
+            </div>
+            <a href="noticias.html" class="nav-item active"><i class="fas fa-bullhorn"></i> Notícias</a>
+            <a href="eventos.html" class="nav-item"><i class="fas fa-calendar-alt"></i> Eventos</a>
+            <a href="indicadores.html" class="nav-item"><i class="fas fa-chart-line"></i> Indicadores</a>
+            <a href="programas.html" class="nav-item"><i class="fas fa-rocket"></i> Programas</a>
+            <a href="sipweb.html" class="nav-item"><i class="fas fa-laptop-code"></i> SipWeb</a>
+            <a href="contato.html" class="nav-item"><i class="fas fa-envelope"></i> Contato</a> 
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="news-page">
+            <div class="container">
+                
+                <div id="view-recentes">
+                    <div class="section-header">
+                        <h2 class="section-title">Últimas Notícias</h2>
+                        <p class="subtitle">Acompanhe as atualizações mais recentes da educação.</p>
+                    </div>
+
+                    <div class="news-grid-4" id="grid-recentes">
+                        </div>
+
+                    <div class="actions-container">
+                        <button id="btn-ver-todas" class="btn-primary-outline">
+                            Ver Todas as Notícias <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="view-arquivo" style="display: none;">
+                    <div class="section-header">
+                        <button id="btn-voltar" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar</button>
+                        <h2 class="section-title">Arquivo de Notícias</h2>
+                    </div>
+
+                    <div class="news-grid-archive" id="grid-arquivo">
+                        </div>
+
+                    <div class="pagination-controls" id="pagination">
+                        </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <div id="news-modal" class="modal-noticia">
+        <div class="modal-noticia-body">
+            <span class="modal-close-btn">&times;</span>
+            <div id="modal-content-area"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Secretaria Municipal de Educação de Sítio Novo Maranhão</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

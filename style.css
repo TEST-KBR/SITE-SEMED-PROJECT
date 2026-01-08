@@ -313,6 +313,207 @@ body {
     font-size: 1em; 
 }
 
+/* -------------------------------------- */
+/* --- 09. ESTILOS DA PÁGINA NOTICIAS --- */
+/* -------------------------------------- */
+
+/* --- CONFIGURAÇÃO GERAL DA PÁGINA DE NOTÍCIAS --- */
+.news-page {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    min-height: 80vh;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* GRID DE 4 COLUNAS (Recentes) */
+.news-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* GRID DE ARQUIVO (Mesmo estilo, mas preparado para paginação) */
+.news-grid-archive {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* ESTILO DO CARD (Igual para todas) */
+.standard-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.standard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-color: var(--verde-escuro);
+}
+
+.card-img-container {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.standard-card:hover img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-date {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.card-title {
+    font-size: 1.15rem;
+    color: #222;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.card-summary {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limita a 3 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* BOTÕES DE AÇÃO */
+.actions-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-primary-outline {
+    background: transparent;
+    border: 2px solid var(--verde-escuro);
+    color: var(--verde-escuro);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+}
+
+.btn-primary-outline:hover {
+    background: var(--verde-escuro);
+    color: white;
+}
+
+.btn-back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* PAGINAÇÃO */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #555;
+}
+
+.page-btn.active, .page-btn:hover {
+    background-color: var(--verde-escuro);
+    color: white;
+    border-color: var(--verde-escuro);
+}
+
+/* MODAL DE LEITURA (Estilo Refinado) */
+.modal-noticia {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0; top: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    overflow-y: auto;
+}
+
+.modal-noticia-body {
+    background: white;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 800px;
+    padding: 40px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-full-img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+
 
 /* -------------------------------------- */
 /* --- 10. ESTILOS DA PÁGINA EVENTOS --- */
