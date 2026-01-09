@@ -381,9 +381,9 @@ function setupImageModal() {
 // logo após os loops que preenchem o HTML.
 
 
-// --- VARIÁVEIS GLOBAIS ---
+// --- VARIÁVEIS GLOBAIS - pagina noticias ---
 let todasNoticias = [];
-const ITENS_POR_PAGINA = 6;
+const ITENS_POR_PAGINA = 6; // Definido como 6 itens na visualização completa
 let paginaAtual = 1;
 
 // --- INICIALIZAÇÃO ---
@@ -392,11 +392,11 @@ async function loadNewsData() {
         const response = await fetch('src/dados/noticias.json');
         todasNoticias = await response.json();
 
-        // 1. Ordenar (Mais novas primeiro)
+        // 1. Ordenar (Mais novas primeiro: maior ID)
         todasNoticias.sort((a, b) => b.id - a.id);
 
-        // 2. Carregar a tela inicial (Top 4)
-        renderizarRecentes();
+        // 2. Carregar a tela inicial (Apenas as 3 mais recentes)
+        renderizarRecentes(3);
 
         // 3. Configurar os botões de navegação
         setupNavigation();
@@ -406,18 +406,18 @@ async function loadNewsData() {
     }
 }
 
-// --- RENDERIZA AS 3 MAIS RECENTES ---
-function renderizarRecentes() {
+// --- RENDERIZA AS RECENTES NA CAPA ---
+function renderizarRecentes(quantidade) {
     const grid = document.getElementById('grid-recentes');
     if (!grid) return;
 
-    // Pega apenas as 3 primeiras
-    const recentes = todasNoticias.slice(0, 3);
+    // Fatia o array (pega só as 3 primeiras)
+    const recentes = todasNoticias.slice(0, quantidade);
     
     grid.innerHTML = recentes.map(item => criarCardHTML(item)).join('');
 }
 
-// --- RENDERIZA O ARQUIVO (COM PAGINAÇÃO) ---
+// --- RENDERIZA O ARQUIVO (PAGINAÇÃO DE 6 EM 6) ---
 function renderizarArquivo(pagina) {
     const grid = document.getElementById('grid-arquivo');
     const paginationContainer = document.getElementById('pagination');
@@ -431,20 +431,22 @@ function renderizarArquivo(pagina) {
     // Renderiza cards
     grid.innerHTML = itensDaPagina.map(item => criarCardHTML(item)).join('');
 
-    // Renderiza botões de paginação
+    // Renderiza botões de paginação (1, 2, 3...)
     const totalPaginas = Math.ceil(todasNoticias.length / ITENS_POR_PAGINA);
     let pagHTML = '';
 
-    for (let i = 1; i <= totalPaginas; i++) {
-        pagHTML += `<button class="page-btn ${i === pagina ? 'active' : ''}" onclick="mudarPagina(${i})">${i}</button>`;
+    if (totalPaginas > 1) {
+        for (let i = 1; i <= totalPaginas; i++) {
+            pagHTML += `<button class="page-btn ${i === pagina ? 'active' : ''}" onclick="mudarPagina(${i})">${i}</button>`;
+        }
     }
     paginationContainer.innerHTML = pagHTML;
     
-    // Rola a tela suavemente para o topo da lista
+    // Rola suave para o topo do grid
     document.getElementById('view-arquivo').scrollIntoView({ behavior: 'smooth' });
 }
 
-// --- HELPER: CRIA O HTML DO CARD (Igual para todos) ---
+// --- HELPER: CRIA O HTML DO CARD ---
 function criarCardHTML(noticia) {
     const dataFormatada = new Date(noticia.data + 'T00:00:00').toLocaleDateString('pt-BR');
     
@@ -483,39 +485,50 @@ function setupNavigation() {
     });
 }
 
-// Função chamada pelos botões de número
 function mudarPagina(novaPagina) {
     paginaAtual = novaPagina;
     renderizarArquivo(paginaAtual);
 }
 
-// --- MODAL DE LEITURA (MESMA LÓGICA) ---
+// --- MODAL DE LEITURA ---
 function abrirNoticia(id) {
     const noticia = todasNoticias.find(n => n.id === id);
     const modal = document.getElementById('news-modal');
     const content = document.getElementById('modal-content-area');
 
     if (noticia) {
+        const dataFormatada = new Date(noticia.data + 'T00:00:00').toLocaleDateString('pt-BR');
+        
         content.innerHTML = `
-            <span style="color:#888; font-weight:bold;">${new Date(noticia.data + 'T00:00:00').toLocaleDateString('pt-BR')}</span>
-            <h2 style="font-size:2rem; margin:10px 0; color:var(--verde-escuro);">${noticia.titulo}</h2>
+            <span style="color:#888; font-weight:bold; font-size: 0.9rem;">
+                <i class="far fa-calendar-alt"></i> ${dataFormatada}
+            </span>
+            <h2 style="font-size:1.8rem; margin:15px 0 20px; color:var(--verde-escuro); line-height:1.3;">
+                ${noticia.titulo}
+            </h2>
             <img src="${noticia.imagem}" class="modal-full-img">
-            <div style="line-height:1.8; color:#444; font-size:1.1rem; text-align:justify;">${noticia.conteudo}</div>
+            <div class="modal-text">
+                ${noticia.conteudo}
+            </div>
         `;
         modal.style.display = "block";
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow = "hidden"; // Trava scroll da página de trás
     }
 }
 
 // Fechar Modal
-document.querySelector('.modal-close-btn')?.addEventListener('click', () => {
-    document.getElementById('news-modal').style.display = "none";
-    document.body.style.overflow = "auto";
-});
+const closeBtn = document.querySelector('.modal-close-btn');
+if(closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        document.getElementById('news-modal').style.display = "none";
+        document.body.style.overflow = "auto";
+    });
+}
 
 window.onclick = (e) => {
-    if (e.target.classList.contains('modal-noticia')) {
-        document.getElementById('news-modal').style.display = "none";
+    const modal = document.getElementById('news-modal');
+    if (e.target === modal) {
+        modal.style.display = "none";
         document.body.style.overflow = "auto";
     }
 };

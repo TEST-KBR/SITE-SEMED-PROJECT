@@ -317,38 +317,38 @@ body {
 /* --- 09. ESTILOS DA PÁGINA NOTICIAS --- */
 /* -------------------------------------- */
 
-/* --- CONFIGURAÇÃO GERAL DA PÁGINA DE NOTÍCIAS --- */
+/* --- PÁGINA DE NOTÍCIAS --- */
 .news-page {
     padding: 60px 0;
-    background-color: #f9f9f9;
+    background-color: #f8f9fa;
     min-height: 80vh;
 }
 
-.section-header {
+.section-header, .section-header-archive {
     text-align: center;
     margin-bottom: 40px;
     position: relative;
 }
 
-/* GRID DE 4 COLUNAS (Recentes) */
-.news-grid-4 {
+.section-header-archive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* GRID DE 3 COLUNAS (Responsivo) */
+.news-grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-bottom: 40px;
 }
 
-/* GRID DE ARQUIVO (Mesmo estilo, mas preparado para paginação) */
-.news-grid-archive {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-/* ESTILO DO CARD (Igual para todas) */
+/* CARD DE NOTÍCIA */
 .standard-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
@@ -356,6 +356,7 @@ body {
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
+    height: 100%; /* Garante altura igual */
 }
 
 .standard-card:hover {
@@ -377,9 +378,7 @@ body {
     transition: transform 0.5s;
 }
 
-.standard-card:hover img {
-    transform: scale(1.05);
-}
+.standard-card:hover img { transform: scale(1.05); }
 
 .card-content {
     padding: 20px;
@@ -391,14 +390,14 @@ body {
 .card-date {
     font-size: 0.8rem;
     color: #888;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 10px;
     display: block;
 }
 
 .card-title {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #222;
     margin-bottom: 10px;
     line-height: 1.4;
@@ -406,20 +405,17 @@ body {
 }
 
 .card-summary {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #666;
     line-height: 1.6;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limita a 3 linhas */
+    -webkit-line-clamp: 3; /* Corta em 3 linhas */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* BOTÕES DE AÇÃO */
-.actions-container {
-    text-align: center;
-    margin-top: 20px;
-}
+/* BOTÕES */
+.actions-container { text-align: center; margin-top: 20px; }
 
 .btn-primary-outline {
     background: transparent;
@@ -433,15 +429,11 @@ body {
     font-size: 1rem;
 }
 
-.btn-primary-outline:hover {
-    background: var(--verde-escuro);
-    color: white;
-}
+.btn-primary-outline:hover { background: var(--verde-escuro); color: white; }
 
 .btn-back {
     position: absolute;
     left: 0;
-    top: 0;
     background: none;
     border: none;
     cursor: pointer;
@@ -450,7 +442,11 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 10px;
+    transition: 0.3s;
 }
+
+.btn-back:hover { color: var(--verde-escuro); }
 
 /* PAGINAÇÃO */
 .pagination-controls {
@@ -461,14 +457,13 @@ body {
 }
 
 .page-btn {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     border: 1px solid #ddd;
     background: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: 0.2s;
     color: #555;
+    transition: 0.2s;
 }
 
 .page-btn.active, .page-btn:hover {
@@ -477,40 +472,88 @@ body {
     border-color: var(--verde-escuro);
 }
 
-/* MODAL DE LEITURA (Estilo Refinado) */
+/* --- MODAL (Janela de Leitura) --- */
 .modal-noticia {
     display: none;
     position: fixed;
-    z-index: 9999;
+    z-index: 10000;
     left: 0; top: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
     overflow-y: auto;
+    padding: 20px 0;
 }
 
 .modal-noticia-body {
     background: white;
-    margin: 40px auto;
+    margin: 0 auto;
     width: 90%;
     max-width: 800px;
     padding: 40px;
     border-radius: 15px;
     position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
 .modal-close-btn {
     position: absolute;
     top: 15px; right: 20px;
-    font-size: 30px;
+    font-size: 40px;
+    line-height: 30px;
     cursor: pointer;
     color: #333;
+    z-index: 100;
+    transition: 0.3s;
 }
+
+.modal-close-btn:hover { color: var(--vermelho); }
 
 .modal-full-img {
     width: 100%;
-    max-height: 400px;
+    height: auto;
+    max-height: 450px;
     object-fit: cover;
     border-radius: 8px;
     margin: 20px 0;
+}
+
+.modal-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+    white-space: pre-line;
+}
+
+/* --- RESPONSIVIDADE (Ajuste para Celular) --- */
+@media (max-width: 768px) {
+    /* Modal vira Tela Cheia */
+    .modal-noticia { padding: 0; background: white; }
+    
+    .modal-noticia-body {
+        width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 80px 20px 40px 20px; /* Padding no topo para o botão X */
+    }
+
+    /* Botão X fixo no topo da tela */
+    .modal-close-btn {
+        position: fixed;
+        top: 15px; right: 20px;
+        background: #f0f0f0;
+        width: 45px; height: 45px;
+        border-radius: 50%;
+        text-align: center;
+        padding-top: 6px; /* Centraliza o ícone */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .btn-back { position: relative; margin-bottom: 20px; }
+    .section-header-archive { flex-direction: column; }
+    .section-title { font-size: 1.8rem; }
 }
 
 
