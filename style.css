@@ -389,7 +389,7 @@ body {
 
 .card-date {
     font-size: 0.8rem;
-    color: #888;
+    color: var(--verde-escuro);
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -409,7 +409,7 @@ body {
     color: #666;
     line-height: 1.6;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Corta em 3 linhas */
+    -webkit-line-clamp: 4; /* exibe em 4 linhas o resumo da noticia */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -472,7 +472,13 @@ body {
     border-color: var(--verde-escuro);
 }
 
-/* --- MODAL (Janela de Leitura) --- */
+/* --- MODAL (Janela de Leitura) - VERSÃO CORRIGIDA --- */
+
+/* Regra global importante para evitar que paddings estourem a largura */
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
 .modal-noticia {
     display: none;
     position: fixed;
@@ -480,19 +486,21 @@ body {
     left: 0; top: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.85);
     backdrop-filter: blur(5px);
-    overflow-y: auto;
-    padding: 20px 0;
+    overflow-y: auto; /* Permite rolar se a notícia for longa */
+    padding: 20px 0; /* Espaço vertical no desktop */
 }
 
 .modal-noticia-body {
     background: white;
-    margin: 0 auto;
+    margin: 0 auto; /* Centraliza horizontalmente */
     width: 90%;
     max-width: 800px;
     padding: 40px;
     border-radius: 15px;
     position: relative;
     box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    /* Garante que o padding não aumente a largura definida */
+    box-sizing: border-box; 
 }
 
 .modal-close-btn {
@@ -508,49 +516,74 @@ body {
 
 .modal-close-btn:hover { color: var(--vermelho); }
 
+/* Imagem dentro do modal */
 .modal-full-img {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Tenta ocupar 100% */
+    max-width: 100%; /* SEGURANÇA: Nunca ultrapassa 100% do pai */
+    height: auto; /* Mantém a proporção */
     max-height: 450px;
     object-fit: cover;
     border-radius: 8px;
     margin: 20px 0;
+    display: block; /* Remove espaços extras abaixo da imagem */
 }
 
+/* Texto dentro do modal */
 .modal-text {
     font-size: 1.1rem;
     line-height: 1.8;
     color: #444;
     text-align: justify;
     white-space: pre-line;
+    /* SEGURANÇA: Força quebra de linha se houver palavras gigantes ou URLs */
+    overflow-wrap: break-word; 
+    word-wrap: break-word;
 }
 
-/* --- RESPONSIVIDADE (Ajuste para Celular) --- */
+/* Container do título e data no modal */
+#modal-content-area h2 {
+     /* Segurança para o título também não estourar */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+
+/* --- RESPONSIVIDADE (Ajuste Crítico para Celular) --- */
 @media (max-width: 768px) {
-    /* Modal vira Tela Cheia */
-    .modal-noticia { padding: 0; background: white; }
+    /* Modal vira Tela Cheia sem bordas */
+    .modal-noticia {
+        padding: 0;
+        background: white; /* Fundo branco sólido */
+    }
     
     .modal-noticia-body {
-        width: 100%;
-        min-height: 100vh;
-        border-radius: 0;
+        width: 100%; /* Ocupa toda a largura */
+        min-height: 100vh; /* Ocupa toda a altura */
+        border-radius: 0; /* Remove cantos */
         box-shadow: none;
         margin: 0;
-        padding: 80px 20px 40px 20px; /* Padding no topo para o botão X */
+        /* Padding ajustado: Mais espaço no topo para o botão 'X', e laterais seguras */
+        padding: 80px 20px 40px 20px; 
+        box-sizing: border-box; /* ESSENCIAL: Mantém o padding dentro dos 100% */
     }
 
-    /* Botão X fixo no topo da tela */
+    /* Botão X fixo e destacado no topo da tela */
     .modal-close-btn {
-        position: fixed;
-        top: 15px; right: 20px;
-        background: #f0f0f0;
+        position: fixed; /* Fica preso na tela ao rolar */
+        top: 15px; right: 15px;
+        background: #f0f0f0; /* Fundo cinza claro para destaque */
         width: 45px; height: 45px;
-        border-radius: 50%;
+        border-radius: 50%; /* Redondo */
         text-align: center;
         padding-top: 6px; /* Centraliza o ícone */
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
+    /* Ajustes de fonte para celular */
+    .modal-text { font-size: 1rem; }
+    #modal-content-area h2 { font-size: 1.5rem !important; }
+
+    /* Ajuste dos outros elementos da página fora do modal */
     .btn-back { position: relative; margin-bottom: 20px; }
     .section-header-archive { flex-direction: column; }
     .section-title { font-size: 1.8rem; }

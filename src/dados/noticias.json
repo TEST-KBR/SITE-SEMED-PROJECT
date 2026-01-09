@@ -1,101 +1,56 @@
 [
     {
-        "id": 12,
+        "id": 6,
         "titulo": "Corrida marca início das comemorações pelos 64 anos de Sítio Novo",
         "data": "2025-12-07",
         "imagem": "https://www.sitionovo.ma.gov.br/upload/noticias/65359.jpg",
-        "resumo": "A prefeitura de Sítio Novo realizou na manhã deste domingo, (07.12) a I Corrida 64 Anos de História. O evento integra o calendário festivo em homenagem aos 64 anos de emancipação politica de Sítio Novo",
+        "resumo": "Corrida marca início das comemorações pelos 64 anos de Sítio Novo",
 
-        "conteudo": "A prefeitura de Sítio Novo realizou na manhã deste domingo, (07.12) a I Corrida 64 Anos de História. \nO evento integra o calendário festivo em homenagem aos 64 anos de emancipação politica de Sítio Novo.\n\nAs inscrições contemplaram 400 participantes que percorreram percursos de 3 quilômetros e de 5 quilômetros.O prefeito Antônio Coelho correu ao lado da sua esposa Janete Martins.\n\n Vereadores e secretários municipais também participaram da corrida.Atletas de dezenas de municípios vizinhos representaram suas cidades e elogiaram a organização das provas."
-    },
-    {
-        "id": 11,
-        "titulo": "Jornada Pedagógica 2025 reúne mais de 300 educadores da rede municipal",
-        "data": "2025-02-01",
-        "imagem": "src/img/noticias/noticia11.jpg",
-        "resumo": "Evento marcou o início do ano letivo com palestras sobre inovação em sala de aula e planejamento estratégico.",
-        
-        "conteudo": "Com o tema 'Educação que Transforma: Desafios e Inovações', a SEMED realizou a abertura da Jornada Pedagógica 2025. O evento ocorreu no auditório da Escola Municipal e reuniu professores, gestores e coordenadores.\n\nDurante três dias, os profissionais participaram de oficinas práticas sobre metodologias ativas e uso de tecnologia na educação. O objetivo é alinhar as diretrizes curriculares para o novo ano letivo que se inicia, focando na melhoria dos índices de aprendizagem."
-    },
-    {
-        "id": 10,
-        "titulo": "Matrículas abertas para o ano letivo de 2025: Confira o cronograma",
-        "data": "2025-01-15",
-        "imagem": "src/img/noticias/noticia10.jpg",
-        "resumo": "Pais e responsáveis devem procurar as unidades de ensino portando a documentação necessária até o dia 30 de janeiro.",
-        
-        "conteudo": "A Secretaria Municipal de Educação informa que o período de matrículas para novatos e transferências está aberto. O atendimento nas escolas ocorre das 8h às 14h.\n\nDocumentos necessários:\n- Certidão de Nascimento do aluno;\n- Comprovante de residência atualizado;\n- Cartão de vacinação;\n- Documento do responsável (RG e CPF).\n\nPara a renovação de matrícula dos alunos veteranos, o processo é automático, sendo necessária apenas a atualização cadastral na secretaria da escola."
-    },
-    {
-        "id": 9,
-        "titulo": "Alunos de Sítio Novo são premiados na Feira Regional de Ciências",
-        "data": "2024-12-05",
-        "imagem": "src/img/noticias/noticia09.jpg",
-        "resumo": "Projetos sobre sustentabilidade e robótica desenvolvidos por estudantes da Zona Rural ganharam destaque.",
-        "conteudo": "Orgulho para a nossa educação! Estudantes da Escola Municipal Rui Barbosa conquistaram o 1º lugar na Feira Regional de Ciências realizada na capital.\n\nO projeto vencedor apresentou um sistema de irrigação automatizada de baixo custo, ideal para pequenos produtores rurais. Os alunos utilizaram materiais recicláveis e programação básica para desenvolver o protótipo. A equipe foi recebida com festa pela comunidade escolar e pela equipe da SEMED."
-    },
-    {
-        "id": 8,
-        "titulo": "SEMED inicia distribuição de novos kits de fardamento escolar",
-        "data": "2024-11-20",
-        "imagem": "src/img/noticias/noticia08.jpg",
-        "resumo": "Mais de 5 mil alunos serão beneficiados com uniformes completos, incluindo tênis e mochila.",
-        "conteudo": "Garantindo igualdade e economia para as famílias, a Secretaria de Educação começou a entrega dos novos kits de fardamento. Cada aluno receberá duas camisas, uma calça (ou short-saia), um par de tênis e uma mochila padronizada.\n\nO cronograma de entrega seguirá por polos, começando pelas escolas da zona urbana e seguindo para a zona rural na próxima semana. O uso do uniforme é obrigatório e fundamental para a identificação e segurança dos estudantes."
-    },
-    {
-        "id": 7,
-        "titulo": "Desfile Cívico de 7 de Setembro emociona população nas ruas da cidade",
-        "data": "2024-09-08",
-        "imagem": "src/img/noticias/noticia07.jpg",
-        "resumo": "Escolas municipais apresentaram temas sobre a cultura local e a história da independência do Brasil.",
-        "conteudo": "As ruas de Sítio Novo foram tomadas pelas cores verde e amarelo neste feriado. O tradicional Desfile Cívico reuniu todas as escolas da rede municipal, além de fanfarras convidadas.\n\nEste ano, o tema foi 'Nossa História, Nossa Gente', homenageando personalidades locais que contribuíram para o desenvolvimento da cidade. O evento contou com a presença de autoridades municipais e um grande público que aplaudiu as apresentações dos alunos."
-    },
-    {
-        "id": 6,
-        "titulo": "Nutrição Escolar: Cardápio da merenda ganha novos itens da agricultura familiar",
-        "data": "2024-08-15",
-        "imagem": "src/img/noticias/noticia06.jpg",
-        "resumo": "Frutas da época e produtos regionais agora fazem parte da alimentação diária dos alunos.",
-        "conteudo": "Visando melhorar a qualidade nutricional da merenda escolar e apoiar os produtores locais, a SEMED reformulou o cardápio das escolas.\n\nAgora, itens como macaxeira, milho, melancia e banana, comprados diretamente da agricultura familiar do município, estão presentes nas refeições. A medida atende ao Programa Nacional de Alimentação Escolar (PNAE) e garante alimentos frescos e sem agrotóxicos para as crianças."
+        "conteudo": "A prefeitura de Sítio Novo realizou na manhã deste domingo, (07/12/25) a I Corrida 64 Anos de História. O evento integra o calendário festivo em homenagem aos 64 anos de emancipação politica de Sítio Novo.\n\nAs inscrições contemplaram 400 participantes que percorreram percursos de 3 quilômetros e de 5 quilômetros. O prefeito Antônio Coelho correu ao lado da sua esposa Janete Martins.\n\n Vereadores e secretários municipais também participaram da corrida. Atletas de dezenas de municípios vizinhos representaram suas cidades e elogiaram a organização das provas."
     },
     {
         "id": 5,
-        "titulo": "Projeto 'Leitura Viva' incentiva hábito de ler nas escolas da Zona Rural",
-        "data": "2024-07-10",
-        "imagem": "src/img/noticias/noticia05.jpg",
-        "resumo": "Ônibus biblioteca percorre povoados levando livros e contação de histórias para as comunidades.",
-        "conteudo": "O projeto itinerante 'Leitura Viva' chegou esta semana ao Povoado Paciência. Um ônibus adaptado funciona como biblioteca móvel, permitindo que as crianças emprestem livros e participem de rodas de leitura.\n\nAlém do acervo literário, o projeto conta com monitores que realizam teatro de fantoches e atividades lúdicas. O objetivo é democratizar o acesso à leitura e combater o analfabetismo funcional nas áreas mais distantes do centro urbano."
+        "titulo": "Educa+ em Sítio Novo promovendo aprendizagem e integração",
+        "data": "2025-11-15",
+        "imagem": "https://www.sitionovo.ma.gov.br/upload/noticias/54653.jpg",
+        "resumo": "Evento mobiliza escolas e valoriza o protagonismo estudantil em Sítio Novo.",
+        
+        "conteudo": "Na última sexta-feira, 14, a secretaria de educação realizou uma das culminâncias do projeto Educa+ em Sítio Novo. O Educa+ é uma extensão da escola em tempo integral. O projeto funciona em contraturno, oportunizando a todas as escolas da sede do município e as Escolas dos Povoados Paciência e Boa Lembrança a participarem do projeto.\n\nEntre as provas destacam-se o responde ou passa, soletrando e o show de talentos. (Músicas: inglesa, espanhola e nacional), também esporte e conhecimento. Além de produçoes textuais: língua portuguesa.\n\nNo dispositivo de honra estiveram presentes o prefeito Antônio Coelho, Nilda Bueno - secretária de educação, Fernanda Diniz - secretária de cultura, Jean Moyta Brank - gerente de esporte e lazer, as coordenadoras do Educa+ - Hozana Milhomem e Gildene Gomes (zona urbana) e Evania Vargas e Lucidalva Fonseca, (zona rural)."
     },
     {
         "id": 4,
-        "titulo": "SEMED realiza formação sobre Educação Inclusiva para monitores",
-        "data": "2024-06-20",
-        "imagem": "src/img/noticias/noticia04.jpg",
-        "resumo": "Capacitação visa preparar profissionais para o atendimento de alunos com deficiência e transtornos de aprendizagem.",
-        "conteudo": "Cerca de 50 cuidadores e monitores escolares participaram de um curso de capacitação sobre Educação Inclusiva. O foco foi o manejo de alunos com Transtorno do Espectro Autista (TEA) em sala de aula.\n\nA formação abordou estratégias de comunicação alternativa, adaptação de materiais e a importância do vínculo afetivo no processo de ensino-aprendizagem. A SEMED reforça seu compromisso em oferecer uma educação para todos."
+        "titulo": "Educação de Sítio Novo comemora aprovação de Lei que valoriza desempenho escolar",
+        "data": "2025-10-02",
+        "imagem": "https://www.sitionovo.ma.gov.br/upload/noticias/71865.jpg",
+        "resumo": "Nova lei institui Programa Municipal de Premiação por Desempenho Escolar e reconhece o esforço de alunos, professores e escolas de Sítio Novo",
+        
+        "conteudo": "A educação de Sítio Novo vive um momento de celebração. Foi aprovada e sancionada a Lei Municipal n° 541/2025, que cria o Programa Municipal de Premiação por Desempenho Escolar, uma iniciativa inédita que tem como objetivo reconhecer e valorizar alunos, professores e escolas que se destacarem em avaliações externas, como o SEAMA e o Saeb. A proposta, aprovada pela Câmara de Vereadores, contou com sensibilidade e atenção especial dos parlamentares, que compreenderam a importância de incentivar a dedicação e o esforço no ambiente escolar.\n\n A secretária municipal de Educação, Nilda Bueno, destacou a relevância da conquista para toda a comunidade estudantil. “Essa lei é um marco para a educação de Sítio Novo. Representa a valorização dos nossos alunos, professores e escolas que se empenham diariamente para alcançar bons resultados. É um reconhecimento ao esforço coletivo e, ao mesmo tempo, um estímulo para que possamos avançar cada vez mais. Agradecemos aos vereadores por compreenderem a importância deste projeto para o futuro da nossa cidade”, comemorou.\n\n Com a lei em vigor, a expectativa é que a iniciativa contribua não apenas para o fortalecimento da rede municipal de ensino, mas também para a melhoria dos indicadores educacionais, elevando Sítio Novo a um novo patamar de destaque no cenário educacional do Maranhão."
     },
     {
         "id": 3,
-        "titulo": "Jogos Escolares de Sítio Novo: Confira os campeões desta edição",
-        "data": "2024-05-12",
-        "imagem": "src/img/noticias/noticia03.jpg",
-        "resumo": "Competição reuniu estudantes de 12 a 17 anos em diversas modalidades esportivas no Ginásio Municipal.",
-        "conteudo": "Encerrou-se neste fim de semana a etapa municipal dos Jogos Escolares. Durante cinco dias, as escolas competiram em modalidades como Futsal, Vôlei, Handebol e Atletismo.\n\nAs equipes vencedoras representarão o município na etapa regional. O evento promoveu a integração entre os alunos e incentivou a prática esportiva como ferramenta de saúde e disciplina. Confira a tabela completa de medalhas no mural da secretaria."
+        "titulo": "2º Ciclo Formativo Municipal do Pacto pela Aprendizagem é realizado em Sítio Novo",
+        "data": "2025-09-26",
+        "imagem": "https://www.sitionovo.ma.gov.br/upload/noticias/66610.jpg",
+        "resumo": "Evento reúne gestores e coordenadores escolares para fortalecer práticas de gestão, preparar avaliações do Saeb  e Seama e incentivar a leitura nas escolas municipais.",
+
+        "conteudo": "SÍTIO NOVO – A Prefeitura de Sítio Novo, por meio da Secretaria Municipal de Educação, promoveu nesta sexta-feira (26) o 2° Ciclo Formativo Municipal com foco na Gestão de processos das rotinas e das práticas sustentáveis na escola. O encontro, realizado no Complexo Educacional La Roque, reúne gestores e coordenadores escolares, sendo também um espaço para discutir preparativos para as avaliações Saeb (Sistema de Avaliação da Educação Básica), aplicada pelo Governo Federal, e Seama (Sistema Estadual de Avaliação do Maranhão), conduzida pelo Governo do Estado.\n\nA articuladora pedagógica municipal de gestão, Valquíria Diniz Nascimento, coordenou os trabalhos. O evento contou ainda com a presença do prefeito Antônio Coelho e da secretária de Educação, Nilda Bueno. Na oportunidade, o prefeito fez a entrega de kits de biblioteca infantil para gestores das escolas municipais, reforçando o compromisso da gestão com a valorização da leitura e o incentivo ao aprendizado desde os primeiros anos escolares."
     },
     {
         "id": 2,
-        "titulo": "Escola Santos Dumont recebe novos laboratórios de informática",
-        "data": "2024-04-05",
-        "imagem": "src/img/noticias/noticia02.jpg",
-        "resumo": "Foram instalados 20 computadores novos com acesso à internet de alta velocidade para os alunos.",
-        "conteudo": "A inclusão digital é uma prioridade! A Escola Municipal Santos Dumont inaugurou hoje seu novo laboratório de informática. O espaço conta com equipamentos modernos e climatização adequada.\n\nOs computadores serão utilizados para pesquisas escolares e também para oficinas de introdução à programação no contraturno. O investimento foi realizado com recursos próprios do município."
+        "titulo": "Prefeitura empossa 26 Diretores Escolares e Coordenadores Administrativos da rede municipal de educação",
+        "data": "2025-09-10",
+        "imagem": "https://www.sitionovo.ma.gov.br/upload/galeria/26446.jpeg",
+        "resumo": "Cerimônia oficializa a nomeação e reforça o compromisso da gestão municipal com a valorização da educação em Sítio Novo.",
+
+        "conteudo": "Nesta quarta-feira, (10.09) a Câmara de Vereadores de Sítio Novo foi palco de um momento importante para a educação do município. No plenário vereador Ladislau de Oliveira Barros, aconteceu a cerimônia de entrega das nomeações aos 26 Diretores Escolares e Coordenadores Administrativos da rede pública municipal.\n\nEm seu pronunciamento, o prefeito Antônio Coelho destacou a importância da valorização dos profissionais da educação. “Estamos dando posse a pessoas comprometidas com a qualidade do ensino em nosso município. Cada gestor e coordenador tem um papel essencial na construção de uma educação mais inclusiva, moderna e eficiente. É com muito orgulho que reafirmo nosso compromisso em continuar investindo nessa área, que considero uma das prioridades da nossa gestão”, disse.\n\nA secretária de Educação, Nilda Bueno, também ressaltou o papel fundamental dos novos nomeados para o fortalecimento da rede de ensino. “Hoje é um dia de conquista e de esperança. Esses gestores e coordenadores são parte fundamental da engrenagem que faz a educação acontecer todos os dias. A partir de agora, cada um assume a responsabilidade de contribuir com dedicação e compromisso para que nossas escolas continuem avançando”, afirmou.\n\nO presidente da Câmara de Vereadores, Leonel Sigmar (Léo do Lorim), participou da solenidade e destacou a parceria entre os poderes Legislativo e Executivo na construção de políticas públicas que fortalecem a educação municipal.\n\nA cerimônia foi marcada por emoção e simbolizou mais um passo rumo ao fortalecimento da gestão educacional em Sítio Novo.\n\nAs nomeações tem validade de dois anos. Um novo processo seletivo será realizado após esse período, onde os atuais nomeados também poderão participar."
     },
     {
         "id": 1,
-        "titulo": "Volta às aulas: Prefeito e Secretária dão boas-vindas aos alunos",
-        "data": "2024-02-15",
-        "imagem": "src/img/noticias/noticia01.jpg",
-        "resumo": "Ano letivo começou com festa e acolhimento em todas as unidades de ensino da rede municipal.",
-        "conteudo": "O ano letivo começou com muita alegria! O Prefeito e a Secretária de Educação visitaram diversas escolas para desejar um bom retorno aos estudantes e professores.\n\nDurante as visitas, foram verificadas as condições da estrutura física e da merenda escolar. 'Estamos preparados para fazer deste o melhor ano letivo da história de Sítio Novo', destacou a gestora da pasta."
+        "titulo": "Sítio Novo celebra Independência do Brasil com desfile cívico",
+        "data": "2025-09-05",
+        "imagem": "https://www.sitionovo.ma.gov.br/upload/noticias/83343.jpg",
+        "resumo": "Sítio Novo celebra Independência do Brasil com desfile cívico",
+
+        "conteudo": "Na tarde da última sexta-feira (5), o município de Sítio Novo realizou o tradicional desfile cívico em alusão à Independência do Brasil. O evento foi promovido pela Prefeitura Municipal, por meio da Secretaria de Educação e da Secretaria de Cultura e Desenvolvimento Humano, e reuniu autoridades, estudantes, professores e a comunidade em geral.\n\nCom o tema “Identidade Brasileira: Um Povo, Muitas Vozes”, o desfile contou com a participação das escolas da rede municipal da sede e da Escola Estadual Parsondas de Carvalho, que levaram para as ruas apresentações destacando a diversidade cultural e a importância da história do país.\n\nO momento foi abrilhantado pelas fanfarras de Porto Franco, Campestre e Montes Altos, que se uniram à fanfarra de Sítio Novo, garantindo o ritmo e a animação do desfile. O público prestigiou em grande número, tornando a tarde marcada pelo civismo, patriotismo e valorização da identidade brasileira.\n\nA secretária de Educação, Nilda Bueno, destacou a importância da realização do evento: “Foi um momento de união da nossa comunidade escolar, que demonstrou talento e dedicação para levar às ruas um desfile à altura da nossa história. Ficamos felizes em ver a participação das famílias e o apoio das fanfarras, que engrandeceram ainda mais a celebração.”\n\nO prefeito Antônio Coelho também ressaltou a relevância da data e o envolvimento da comunidade: “Celebrar a Independência do Brasil é reafirmar os valores de cidadania e patriotismo. Nosso município mostrou, mais uma vez, a força da nossa educação e da nossa cultura, que caminham juntas na construção de uma sociedade mais consciente e participativa.”"
     }
 ]
