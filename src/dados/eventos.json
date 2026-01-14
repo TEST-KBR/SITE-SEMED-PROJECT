@@ -32,7 +32,7 @@
     {
         "id": 4,
         "titulo": "IV Formação LEEI",
-        "data": "2024-10-30",
+        "data": "2025-12-07",
         "hora": "08:00 - 17:00",
         "local": "Laboratório do La Roque",
         "descricao": "Formação com professores da Educação Infantil (Pré I e Pré II)",
@@ -43,7 +43,7 @@
         "id": 5,
         "titulo": "I Corrida - 64 anos de história",
         "data": "2025-12-07",
-        "hora": "06:00",
+        "hora": "6:00",
         "local": "Praça da Juventudo - Vila Nova",
         "descricao": "Corrida de rua em comemoração aos 64 anos de emancipação política de Sítio Novo MA",
         "imagem": "src/imagens/eventos/corrida.jpg",

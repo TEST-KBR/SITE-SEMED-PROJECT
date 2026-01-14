@@ -500,12 +500,14 @@ function abrirNoticia(id) {
         const dataFormatada = new Date(noticia.data + 'T00:00:00').toLocaleDateString('pt-BR');
         
         content.innerHTML = `
-            <span style="color:#888; font-weight:bold; font-size: 0.9rem;">
+            <span class="modal-noticia-date">
                 <i class="far fa-calendar-alt"></i> ${dataFormatada}
             </span>
-            <h2 style="font-size:1.8rem; margin:15px 0 20px; color:var(--verde-escuro); line-height:1.3;">
+
+            <h2 class="modal-noticia-title">
                 ${noticia.titulo}
             </h2>
+            
             <img src="${noticia.imagem}" class="modal-full-img">
             <div class="modal-text">
                 ${noticia.conteudo}
