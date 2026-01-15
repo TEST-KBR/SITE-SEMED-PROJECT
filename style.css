@@ -343,6 +343,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-bottom: 40px;
+    justify-content: start; /* Alinha à esquerda se houver apenas um */
 }
 
 /* CARD DE NOTÍCIA */
@@ -357,6 +358,16 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%; /* Garante altura igual */
+    /* SOLUÇÃO AQUI: */
+    width: 100%; 
+    max-width: 400px; /* Impede que ele estique se estiver sozinho */
+}
+
+/*garantir que em telas grandes caibam as 3 lado a lado sem erro */
+@media (min-width: 1000px) {
+    .news-grid-3 {
+        grid-template-columns: repeat(3, 1fr); /* Força exatamente 3 colunas */
+    }
 }
 
 .standard-card:hover {

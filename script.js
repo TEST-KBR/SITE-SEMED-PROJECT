@@ -262,16 +262,31 @@ async function loadEventsData() {
         const response = await fetch('src/dados/eventos.json');
         let events = await response.json();
 
-        // 1. ORDENAÇÃO: Mais novos primeiro (baseado na data)
-        events.sort((a, b) => new Date(b.data) - new Date(a.data));
+        // 1. ORDENAÇÃO INTELIGENTE (Data primeiro, ID como desempate)
+        events.sort((a, b) => {
+            const dataA = new Date(a.data + 'T00:00:00');
+            const dataB = new Date(b.data + 'T00:00:00');
+
+            if (dataB - dataA !== 0) {
+                return dataB - dataA; // Mais recentes/futuros primeiro
+            }
+            return b.id - a.id; // Desempate pelo ID
+        });
 
         // Limpa os containers
         upcomingContainer.innerHTML = '';
         pastContainer.innerHTML = '';
 
-        events.forEach(event => {
-            // 2. FORMATAÇÃO DA DATA COMPLETA (Ex: 15 de fevereiro de 2024)
+        // Pegamos a data de hoje (zerando as horas para comparar apenas os dias)
+        const hoje = new Date().setHours(0, 0, 0, 0);
+
+        events.forEach(event => {   
             const dateObj = new Date(event.data + 'T00:00:00');
+
+            // 2. AUTOMAÇÃO: Verifica se o evento já passou da data de hoje
+            // O evento é considerado "passado" se a data for menor que hoje OU se estiver marcado concluído no JSON
+            const estaConcluido = dateObj.getTime() < hoje || event.concluido === true;
+
             const dataFormatada = dateObj.toLocaleDateString('pt-BR', {
                 day: '2-digit',
                 month: 'long',
@@ -282,7 +297,7 @@ async function loadEventsData() {
             const imgPath = event.imagem || 'src/img/eventos/default.jpg';
 
             const eventHTML = `
-                <div class="event-card ${event.concluido ? 'past' : ''}">
+                <div class="event-card ${estaConcluido ? 'past' : ''}">
                     <div class="event-image-container">
                         <img src="${imgPath}" alt="${event.titulo}" class="event-img">
                     </div>
@@ -296,16 +311,15 @@ async function loadEventsData() {
                 </div>
             `;
 
-            if (event.concluido) {
+            if (estaConcluido) {
                 pastContainer.innerHTML += eventHTML;
             } else {
                 upcomingContainer.innerHTML += eventHTML;
             }
         });
 
-        // O HTML já foi construído, agora o JS pode "enxergar" as imagens.
+        // Ativa as funções auxiliares
         setupImageModal();
-        // 3. ATIVA O CLIQUE PARA ESCONDER/MOSTRAR
         setupEventsToggle();
 
     } catch (error) {
@@ -314,42 +328,37 @@ async function loadEventsData() {
     }
 }
 
+// --- FUNÇÃO PARA MOSTRAR/OCULTAR EVENTOS PASSADOS ---
 function setupEventsToggle() {
     const divider = document.querySelector('.event-divider.realizado');
     const container = document.getElementById('past-events');
     
     if (divider && container) {
-        // Estado inicial: Escondido
-        container.style.display = 'none';
+        container.style.display = 'none'; // Inicia escondido
         divider.style.cursor = 'pointer';
         
-        // Adiciona um aviso visual de que é clicável
+        // Cria o botão de alternância
         const toggleInfo = document.createElement('span');
-        toggleInfo.style.fontSize = '0.6em';
+        toggleInfo.className = 'toggle-badge';
+        toggleInfo.style.fontSize = '0.7em';
         toggleInfo.style.marginLeft = 'auto';
-        toggleInfo.style.backgroundColor = '#eee';
-        toggleInfo.style.padding = '4px 8px';
-        toggleInfo.style.borderRadius = '4px';
+        toggleInfo.style.backgroundColor = '#f0f0f0';
+        toggleInfo.style.padding = '5px 12px';
+        toggleInfo.style.borderRadius = '20px';
         toggleInfo.innerHTML = 'VER FINALIZADOS <i class="fas fa-chevron-down"></i>';
         divider.appendChild(toggleInfo);
 
-        divider.addEventListener('click', () => {
+        divider.onclick = () => {
             const isHidden = container.style.display === 'none';
             container.style.display = isHidden ? 'grid' : 'none';
-            
-            // Atualiza o texto e ícone
             toggleInfo.innerHTML = isHidden ? 
                 'OCULTAR <i class="fas fa-chevron-up"></i>' : 
                 'VER FINALIZADOS <i class="fas fa-chevron-down"></i>';
-        });
+        };
     }
 }
 
-// Inicia a função
-loadEventsData();
-
-
-// Função para gerenciar o Modal de Imagem
+// --- MODAL DE IMAGEM PARA EVENTOS ---
 function setupImageModal() {
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('img-ampliada');
@@ -358,30 +367,34 @@ function setupImageModal() {
 
     if (!modal) return;
 
-    // Seleciona todas as imagens de eventos
     document.querySelectorAll('.event-img').forEach(img => {
-        img.style.cursor = 'zoom-in'; // Muda o cursor para indicar que é clicável
         img.onclick = function() {
             modal.style.display = "block";
             modalImg.src = this.src;
             captionText.innerHTML = this.alt;
+            document.body.style.overflow = "hidden"; // Trava o scroll
         }
     });
 
-    // Fecha o modal ao clicar no X
-    closeBtn.onclick = () => modal.style.display = "none";
+    closeBtn.onclick = () => {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    };
 
-    // Fecha o modal ao clicar fora da imagem
     modal.onclick = (e) => {
-        if (e.target === modal) modal.style.display = "none";
+        if (e.target === modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
     };
 }
 
-// ATENÇÃO: Chame a função setupImageModal() dentro da loadEventsData() 
-// logo após os loops que preenchem o HTML.
+// Inicia a função
+loadEventsData();
 
 
-// --- VARIÁVEIS GLOBAIS - pagina noticias ---
+
+// --- VARIÁVEIS GLOBAIS - PAGINA DE NOTICIAS ---
 let todasNoticias = [];
 const ITENS_POR_PAGINA = 6; // Definido como 6 itens na visualização completa
 let paginaAtual = 1;
@@ -392,8 +405,20 @@ async function loadNewsData() {
         const response = await fetch('src/dados/noticias.json');
         todasNoticias = await response.json();
 
-        // 1. Ordenar (Mais novas primeiro: maior ID)
-        todasNoticias.sort((a, b) => b.id - a.id);
+        // 1. ORDENAÇÃO INTELIGENTE (MODIFICADO)
+        todasNoticias.sort((a, b) => {
+            // Criamos objetos de data para comparação
+            const dataA = new Date(a.data + 'T00:00:00');
+            const dataB = new Date(b.data + 'T00:00:00');
+
+            // Critério 1: Data mais recente primeiro
+            if (dataB - dataA !== 0) {
+                return dataB - dataA;
+            }
+
+            // Critério 2: Se a data for igual, o ID maior (postado por último) vence
+            return b.id - a.id;
+        });
 
         // 2. Carregar a tela inicial (Apenas as 3 mais recentes)
         renderizarRecentes(3);
@@ -507,7 +532,7 @@ function abrirNoticia(id) {
             <h2 class="modal-noticia-title">
                 ${noticia.titulo}
             </h2>
-            
+
             <img src="${noticia.imagem}" class="modal-full-img">
             <div class="modal-text">
                 ${noticia.conteudo}
