@@ -120,7 +120,7 @@ async function loadIndicatorsData() {
         
         const indicatorNames = Object.keys(indicatorsData);
         filtersContainer.innerHTML = ''; 
-        dataGrid.innerHTML = `<p style="text-align: center; color: #666; padding: 50px;">Selecione um indicador acima para visualizar os dados.</p>`;
+        dataGrid.innerHTML = `<p style="text-align: center; color: #666; padding: 20px;">Selecione um indicador acima para visualizar os dados.</p>`;
         descriptionBox.innerHTML = '';
         subFiltersContainer.classList.remove('active'); // Garante que o sub-menu comece escondido
         subFiltersContainer.innerHTML = ''; // Limpa qualquer conteúdo prévio
@@ -170,7 +170,7 @@ function handleIndicatorClick(indicatorName, data, filtersContainer, subFiltersC
         const subIndicatorNames = Object.keys(indicatorGroup.subIndicadores);
         
         // Mensagem inicial de instrução para o sub-menu
-        dataGrid.innerHTML = `<p style="text-align: center; color: #666; padding: 50px;">Selecione uma categoria de ${indicatorName} para ver os dados.</p>`;
+        dataGrid.innerHTML = `<p style="text-align: center; color: #666; padding: 20px;">Selecione uma categoria de ${indicatorName} para ver os dados.</p>`;
 
 
         // 3. Cria os botões do sub-menu

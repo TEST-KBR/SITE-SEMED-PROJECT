@@ -2,7 +2,7 @@
     {
         "id": 6,
         "titulo": "Jornada Pedagógica 2026",
-        "data": "2026-01-16",
+        "data": "2026-01-30",
         "hora": "08:00",
         "local": "Auditório Municipal",
         "descricao": "Planejamento estratégico para o início do ano letivo.",
@@ -12,8 +12,8 @@
     {
         "id": 5,
         "titulo": "Jornada Pedagógica 2026",
-        "data": "2026-01-14",
-        "hora": "08:00",
+        "data": "2026-01-30",
+        "hora": "07:00",
         "local": "Auditório Municipal",
         "descricao": "Planejamento estratégico para o início do ano letivo.",
         "imagem": "src/img/eventos/jornada.jpg",

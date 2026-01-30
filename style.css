@@ -360,6 +360,44 @@ body {
     }
 }
 
+/* --- 4. PADRONIZAÇÃO DE TÍTULOS (ESTILO CLEAN) --- */
+.container-titulo-pagina {
+    padding: 60px 0 0px 0; /* Espaço em cima e embaixo */
+    text-align: center;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.titulo-pagina {
+    font-size: 1.6rem;
+    color: var(--verde-escuro);
+    text-transform: uppercase;
+    margin: 0;
+    padding-bottom: 15px;
+    display: inline-block; /* Faz a linha ter o tamanho do texto */
+    border-bottom: 3px solid var(--verde-banner); /* A linha suave que você curtiu */
+}
+
+.subtitulo-pagina {
+    display: block; /* Joga para a linha de baixo */
+    font-size: 1.1rem;
+    color: #666;
+    margin-top: 15px;
+    font-weight: normal;
+    text-transform: none; /* Subtítulo em letras normais fica mais leve */
+}
+
+/* Ajuste para telas menores */
+@media (max-width: 991px) {
+    .titulo-pagina {
+        font-size: 1.2rem;
+    }
+    .subtitulo-pagina {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+}
+
 /* -------------------------------------- */
 /* --- 4. CONTEÚDO HOME: BANNER E INDICADORES --- */
 /* -------------------------------------- */
@@ -491,22 +529,18 @@ body {
 
 /* --- PÁGINA DE NOTÍCIAS --- */
 .news-page {
-    padding: 60px 0;
+    padding-top: 0;
+    padding-bottom: 40px;
     background-color: #f0f0f0;
     min-height: 80vh;
 }
 
-.section-header, .section-header-archive {
-    text-align: center;
-    margin-bottom: 40px;
-    position: relative;
+.main-noticias {
+    padding-top: 0 !important;
 }
 
-.section-header-archive {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+.news-page .container-titulo-pagina { 
+    padding-bottom: 40px;
 }
 
 /* GRID DE 3 COLUNAS (Responsivo) */
@@ -622,20 +656,28 @@ body {
     color: white; 
 }
 
+.container-titulo-pagina {
+    position: relative; 
+}
+
 .btn-back {
-    position: absolute;
-    left: 0;
+    position: absolute; /* O Pulo do Gato: Flutua independente do texto */
+    left: 0;            /* Cola na esquerda do container */
+    top: 50%;           /* Fica no meio da altura do container */
+    transform: translateY(-50%); /* Centraliza verticalmente exato */ 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: 2px solid var(--verde-escuro);
     border-radius: 30px;
     cursor: pointer;
     font-size: 1rem;
     color: var(--verde-escuro);
-    display: flex;
-    align-items: center;
     gap: 8px;
-    padding: 10px;
+    padding: 10px 20px;
     transition: 0.3s;
+    margin-bottom: 0; /* No PC não precisa de margem embaixo */
 }
 
 .btn-back:hover { 
@@ -795,9 +837,14 @@ body {
     }
 
     /* Ajuste dos outros elementos da página fora do modal */
-    .btn-back { position: relative; margin-bottom: 20px; }
-    .section-header-archive { flex-direction: column; }
-    .section-title { font-size: 1.8rem; }
+    .btn-back { 
+        position: relative; /* Volta ao fluxo normal */
+        left: auto;         /* Remove alinhamento esquerdo */
+        top: auto;          /* Remove alinhamento topo */
+        transform: none;    /* Remove centralização vertical */
+        margin-bottom: 20px; /* Adiciona espaço para o título abaixo */
+        /* Como o pai tem text-align: center, o botão vai centralizar sozinho aqui */ 
+    }
 }
 
 /* -------------------------------------- */
@@ -1310,18 +1357,6 @@ body {
     padding: 20px 0;
 }
 
-.sipweb-section .section-title {
-    color: var(--verde-escuro);
-    font-size: 2em;
-    margin-bottom: 5px;
-}
-
-.sipweb-section .subtitle {
-    color: #555;
-    font-size: 1.2em;
-    margin-bottom: 30px;
-}
-
 .sipweb-content-container {
     display: flex;
     align-items: flex-start;
@@ -1480,17 +1515,12 @@ body {
 /* -------------------------------------- */
 /* --- 10. ESTILOS DA PÁGINA CONTATO --- */
 /* -------------------------------------- */
-.contact-section {
-    text-align: center;
-    padding: 20px 0;
-}
-
 .contact-form-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    max-width: 1200px;
-    margin: 40px auto;
+    max-width: 1300px;
+    margin: 20px auto;
     padding: 0 50px;
     gap: 30px;
 }
@@ -1652,13 +1682,13 @@ body {
 .footer { 
     background-color: var(--verde-escuro); 
     color: white; 
-    padding: 30px 50px; 
+    padding: 15px 50px; 
     text-align: center; 
     margin-top: 50px; 
 }
 
 .footer p { 
-    margin: 5px 0; 
+    margin: 10px 0; 
     font-size: 1em; 
 }
 
