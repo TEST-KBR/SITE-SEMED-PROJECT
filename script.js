@@ -394,87 +394,177 @@ loadEventsData();
 
 
 
-// --- VARIÁVEIS GLOBAIS - PAGINA DE NOTICIAS ---
+// ==========================================
+// --- VARIÁVEIS GLOBAIS ---
+// ==========================================
 let todasNoticias = [];
-const ITENS_POR_PAGINA = 6; // Definido como 6 itens na visualização completa
+const ITENS_POR_PAGINA = 6; 
 let paginaAtual = 1;
 
-// --- INICIALIZAÇÃO ---
+// ==========================================
+// --- 1. INICIALIZAÇÃO E CARREGAMENTO ---
+// ==========================================
 async function loadNewsData() {
     try {
         const response = await fetch('src/dados/noticias.json');
         todasNoticias = await response.json();
 
-        // 1. ORDENAÇÃO INTELIGENTE (MODIFICADO)
+        // Ordenação: Mais recente primeiro
         todasNoticias.sort((a, b) => {
-            // Criamos objetos de data para comparação
             const dataA = new Date(a.data + 'T00:00:00');
             const dataB = new Date(b.data + 'T00:00:00');
-
-            // Critério 1: Data mais recente primeiro
-            if (dataB - dataA !== 0) {
-                return dataB - dataA;
-            }
-
-            // Critério 2: Se a data for igual, o ID maior (postado por último) vence
+            if (dataB - dataA !== 0) return dataB - dataA;
             return b.id - a.id;
         });
 
-        // 2. Carregar a tela inicial (Apenas as 3 mais recentes)
         renderizarRecentes(3);
-
-        // 3. Configurar os botões de navegação
         setupNavigation();
+
+        // Se der F5 ou entrar com link direto no arquivo
+        if (window.location.hash.includes('#arquivo')) {
+            const paginaURL = getPaginaDaURL();
+            mostrarTelaArquivo(paginaURL);
+        }
 
     } catch (e) {
         console.error("Erro ao carregar notícias:", e);
     }
 }
 
-// --- RENDERIZA AS RECENTES NA CAPA ---
+// ==========================================
+// --- 2. CONTROLE DE NAVEGAÇÃO ---
+// ==========================================
+
+function getPaginaDaURL() {
+    const params = new URLSearchParams(window.location.hash.split('?')[1]);
+    const p = parseInt(params.get('p'));
+    return p > 0 ? p : 1;
+}
+
+function setupNavigation() {
+    const btnVerTodas = document.getElementById('btn-ver-todas');
+    const btnVoltar = document.getElementById('btn-voltar');
+
+    // BOTÃO VER TODAS
+    btnVerTodas.addEventListener('click', () => {
+        const url = `#arquivo?p=1`;
+        // Cria o ponto de entrada no histórico
+        history.pushState({ view: 'arquivo', page: 1 }, '', url);
+        mostrarTelaArquivo(1);
+    });
+
+    // BOTÃO VOLTAR (DA TELA - VERDE)
+    // Comportamento: Sai do arquivo e vai direto para a Home
+    btnVoltar.addEventListener('click', () => {
+        // Remove o hash #arquivo visualmente e vai para a home
+        history.pushState(null, '', window.location.pathname);
+        mostrarTelaRecentes();
+    });
+}
+
+// --- MUDANÇA DE PÁGINA (PAGINAÇÃO 1, 2, 3...) ---
+function mudarPagina(novaPagina) {
+    const url = `#arquivo?p=${novaPagina}`;
+    
+    // AQUI ESTÁ A MÁGICA PARA MOBILE:
+    // Usamos 'pushState'. Isso cria um histórico para cada página.
+    // Se o usuário clicar "Voltar" no celular, ele volta para a página anterior.
+    history.pushState({ view: 'arquivo', page: novaPagina }, '', url);
+    
+    mostrarTelaArquivo(novaPagina);
+}
+
+// --- ESCUTA O BOTÃO VOLTAR DO NAVEGADOR/CELULAR ---
+window.addEventListener('popstate', function(event) {
+    // Se a URL ainda tiver #arquivo (ex: voltou da pág 3 para a 2)
+    if (window.location.hash.includes('#arquivo')) {
+        const paginaParaCarregar = getPaginaDaURL();
+        mostrarTelaArquivo(paginaParaCarregar);
+    } else {
+        // Se a URL ficou limpa (voltou da pág 1 para o início)
+        mostrarTelaRecentes();
+    }
+});
+
+// ==========================================
+// --- 3. RENDERIZAÇÃO E TROCA DE TELAS ---
+// ==========================================
+
+function mostrarTelaArquivo(pagina) {
+    // 1. Troca as telas primeiro
+    document.getElementById('view-recentes').style.display = 'none';
+    document.getElementById('view-arquivo').style.display = 'block';
+    
+    paginaAtual = pagina;
+    renderizarArquivo(pagina);
+
+    // 2. Faz o scroll suave até o título da seção de arquivo
+    // Procure o ID ou Classe do seu título (ex: .container-titulo-pagina)
+    const tituloArquivo = document.querySelector('#view-arquivo .container-titulo-pagina');
+    
+    if (tituloArquivo) {
+        setTimeout(() => {
+            tituloArquivo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+    }
+}
+
+function mostrarTelaRecentes() {
+    document.getElementById('view-arquivo').style.display = 'none';
+    document.getElementById('view-recentes').style.display = 'block';
+
+    const tituloRecentes = document.querySelector('#view-recentes .container-titulo-pagina');
+    
+    if (tituloRecentes) {
+        setTimeout(() => {
+            tituloRecentes.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+    }
+}
+
 function renderizarRecentes(quantidade) {
     const grid = document.getElementById('grid-recentes');
     if (!grid) return;
-
-    // Fatia o array (pega só as 3 primeiras)
     const recentes = todasNoticias.slice(0, quantidade);
-    
     grid.innerHTML = recentes.map(item => criarCardHTML(item)).join('');
 }
 
-// --- RENDERIZA O ARQUIVO (PAGINAÇÃO DE 6 EM 6) ---
 function renderizarArquivo(pagina) {
     const grid = document.getElementById('grid-arquivo');
     const paginationContainer = document.getElementById('pagination');
     if (!grid) return;
 
-    // Cálculo dos índices
     const inicio = (pagina - 1) * ITENS_POR_PAGINA;
     const fim = inicio + ITENS_POR_PAGINA;
     const itensDaPagina = todasNoticias.slice(inicio, fim);
 
-    // Renderiza cards
     grid.innerHTML = itensDaPagina.map(item => criarCardHTML(item)).join('');
 
-    // Renderiza botões de paginação (1, 2, 3...)
+    // Lógica dos Botões de Paginação
     const totalPaginas = Math.ceil(todasNoticias.length / ITENS_POR_PAGINA);
     let pagHTML = '';
 
     if (totalPaginas > 1) {
+        // Botão Anterior (<)
+        if(pagina > 1) {
+             pagHTML += `<button class="page-btn" onclick="mudarPagina(${pagina - 1})"><i class="fas fa-chevron-left"></i></button>`;
+        }
+        
+        // Números
         for (let i = 1; i <= totalPaginas; i++) {
             pagHTML += `<button class="page-btn ${i === pagina ? 'active' : ''}" onclick="mudarPagina(${i})">${i}</button>`;
         }
+
+        // Botão Próximo (>)
+        if(pagina < totalPaginas) {
+             pagHTML += `<button class="page-btn" onclick="mudarPagina(${pagina + 1})"><i class="fas fa-chevron-right"></i></button>`;
+        }
     }
     paginationContainer.innerHTML = pagHTML;
-    
-    // Rola suave para o topo do grid
-    document.getElementById('view-arquivo').scrollIntoView({ behavior: 'smooth' });
 }
 
-// --- HELPER: CRIA O HTML DO CARD ---
 function criarCardHTML(noticia) {
     const dataFormatada = new Date(noticia.data + 'T00:00:00').toLocaleDateString('pt-BR');
-    
     return `
         <div class="standard-card" onclick="abrirNoticia(${noticia.id})">
             <div class="card-img-container">
@@ -489,33 +579,10 @@ function criarCardHTML(noticia) {
     `;
 }
 
-// --- CONTROLE DE NAVEGAÇÃO ENTRE TELAS ---
-function setupNavigation() {
-    const btnVerTodas = document.getElementById('btn-ver-todas');
-    const btnVoltar = document.getElementById('btn-voltar');
-    const viewRecentes = document.getElementById('view-recentes');
-    const viewArquivo = document.getElementById('view-arquivo');
+// ==========================================
+// --- 4. MODAL ---
+// ==========================================
 
-    // Botão "Ver Todas"
-    btnVerTodas.addEventListener('click', () => {
-        viewRecentes.style.display = 'none';
-        viewArquivo.style.display = 'block';
-        renderizarArquivo(1); // Carrega a página 1
-    });
-
-    // Botão "Voltar"
-    btnVoltar.addEventListener('click', () => {
-        viewArquivo.style.display = 'none';
-        viewRecentes.style.display = 'block';
-    });
-}
-
-function mudarPagina(novaPagina) {
-    paginaAtual = novaPagina;
-    renderizarArquivo(paginaAtual);
-}
-
-// --- MODAL DE LEITURA ---
 function abrirNoticia(id) {
     const noticia = todasNoticias.find(n => n.id === id);
     const modal = document.getElementById('news-modal');
@@ -523,41 +590,28 @@ function abrirNoticia(id) {
 
     if (noticia) {
         const dataFormatada = new Date(noticia.data + 'T00:00:00').toLocaleDateString('pt-BR');
-        
         content.innerHTML = `
-            <span class="modal-noticia-date">
-                <i class="far fa-calendar-alt"></i> ${dataFormatada}
-            </span>
-
-            <h2 class="modal-noticia-title">
-                ${noticia.titulo}
-            </h2>
-
+            <span class="modal-noticia-date"><i class="far fa-calendar-alt"></i> ${dataFormatada}</span>
+            <h2 class="modal-noticia-title">${noticia.titulo}</h2>
             <img src="${noticia.imagem}" class="modal-full-img">
-            <div class="modal-text">
-                ${noticia.conteudo}
-            </div>
+            <div class="modal-text">${noticia.conteudo}</div>
         `;
         modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Trava scroll da página de trás
+        document.body.style.overflow = "hidden";
     }
 }
 
-// Fechar Modal
 const closeBtn = document.querySelector('.modal-close-btn');
-if(closeBtn) {
-    closeBtn.addEventListener('click', () => {
-        document.getElementById('news-modal').style.display = "none";
-        document.body.style.overflow = "auto";
-    });
-}
+if(closeBtn) closeBtn.addEventListener('click', fecharModal);
 
 window.onclick = (e) => {
     const modal = document.getElementById('news-modal');
-    if (e.target === modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-    }
+    if (e.target === modal) fecharModal();
 };
+
+function fecharModal() {
+    document.getElementById('news-modal').style.display = "none";
+    document.body.style.overflow = "auto";
+}
 
 loadNewsData();
